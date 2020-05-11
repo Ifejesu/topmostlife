@@ -1,0 +1,417 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class=" text-white">Name: {{name}}</h1>
+        <p class="text-white mt-0 mb-5">Account No.:&nbsp;{{account_no}}</p>
+        <a href="" routerLinkActive="active" routerLink="/savings-account" class="btn btn-info">Existing Savings
+          Accounts</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0"> Savings Account</h3>
+            </div>
+            <div class="col text-right">
+              <a href="" routerLinkActive="active" routerLink="/single-contribution" (click)="edit()" class="btn btn-sm btn-primary">Contribution Records</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="oneSavingsForm" (ngSubmit)="onSubmit()">
+            <h6 class="heading-small text-muted mb-4">Account Type</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="account_type" class="custom-control-input" id="dc" value="DC"
+                        type="radio">
+                      <label class="custom-control-label" for="dc">(DC) Daily Contribution</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="account_type" class="custom-control-input" id="ts" value="TS"
+                        type="radio">
+                      <label class="custom-control-label" for="ts">(TS) Target Savings</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="account_type" class="custom-control-input" id="gds" value="GDS"
+                        type="radio">
+                      <label class="custom-control-label" for="gds">(GDS) Group Daily Savings</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Date Created</label>
+                    <input type="text" class="form-control" formControlName="created" readonly>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Amount (&#8358;)</label>
+                    <span *ngIf="oneSavingsForm.controls['amount'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="amount" placeholder="500" class="form-control" formControlName="amount">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Personal Details -->
+            <h6 class="heading-small text-muted mb-4">Personal Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Surname</label>
+                    <span *ngIf="oneSavingsForm.controls['surname'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" class="form-control" formControlName="surname">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="other_names">Other Names</label>
+                    <span *ngIf="oneSavingsForm.controls['other_names'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="other_names" class="form-control" formControlName="other_names">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="gender">Gender</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="gender" class="custom-control-input" id="male" value="Male" type="radio">
+                      <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="gender" class="custom-control-input" id="female" value="Female"
+                        type="radio">
+                      <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="dob">Date of Birth</label>
+                    <span *ngIf="oneSavingsForm.controls['dob'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="date" name="dob" placeholder="02-09-1987" class="form-control" formControlName="dob">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="email">Email address</label>
+                    <input type="email" name="email" class="form-control" formControlName="email">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="phone">Phone</label>
+                    <span *ngIf="oneSavingsForm.controls['phone'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="phone" class="form-control" formControlName="phone">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Marital Details -->
+            <h6 class="heading-small text-muted mb-4">Marital Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="marital">Marital Status</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="marital_status" class="custom-control-input" id="single" value="Single"
+                        type="radio">
+                      <label class="custom-control-label" for="single">Single</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="marital_status" class="custom-control-input" id="married" value="Married"
+                        type="radio">
+                      <label class="custom-control-label" for="married">Married</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="spouseName">Spouse Name (If
+                      Married)</label>
+                    <input type="text" name="spouseName" class="form-control" formControlName="spouse_name">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="spousePhone">Spouse Phone (If
+                      Married)</label>
+                    <input type="text" name="spousePhone" class="form-control" formControlName="spouse_phone">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Bank Details -->
+            <h6 class="heading-small text-muted mb-4">Bank Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankName">Bank Name</label>
+                    <input type="text" name="bankName" class="form-control" formControlName="bank_name">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankAcctNum">Bank Account
+                      Number</label>
+                    <input type="text" name="bankAcctNum" class="form-control" formControlName="account_no">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankAcctName">Bank Account
+                      Name</label>
+                    <input type="text" name="bankAcctName" class="form-control" formControlName="account_name">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="address">Address</label>
+                    <span *ngIf="oneSavingsForm.controls['address'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input name="address" class="form-control" type="text" formControlName="address">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="state">State</label>
+                    <span *ngIf="oneSavingsForm.controls['state'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="state" class="form-control" formControlName="state">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="localGovt">Local Govt.</label>
+                    <span *ngIf="oneSavingsForm.controls['lga'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="localGovt" class="form-control " formControlName="lga">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="city">City/Town</label>
+                    <span *ngIf="oneSavingsForm.controls['city_town'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *This field is required</span>
+                    <input type="text" name="city" class="form-control" formControlName="city_town">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Employment Details -->
+            <h6 class="heading-small text-muted mb-4">Employment Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="employment">Employment
+                      Status</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="emp_status" class="custom-control-input" id="employed" value="Employed"
+                        type="radio">
+                      <label class="custom-control-label" for="employed">Employed</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="emp_status" class="custom-control-input" id="selfEmployed" type="radio"
+                        value="Self Employed">
+                      <label class="custom-control-label" for="selfEmployed">Self Employed</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="emp_status" class="custom-control-input" id="student" value="Student"
+                        type="radio">
+                      <label class="custom-control-label" for="student">Student</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="emp_status" class="custom-control-input" id="others" value="Others"
+                        type="radio">
+                      <label class="custom-control-label" for="others">Others</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <label class="form-control-label" for="occupation">Business/Occupation</label>
+                    <input type="text" name="occupation" class="form-control " formControlName="emp_occupation">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="employersName">Business/Employer's
+                      Name</label>
+                    <input type="text" name="employersName" class="form-control " formControlName="emp_name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="employersAdd">Business/Employer's
+                      Address</label>
+                    <input type="text" name="employersAdd" class="form-control " formControlName="emp_address">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Next of Kin Details -->
+            <h6 class="heading-small text-muted mb-4">Next of Kin Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinSurname">Surname</label>
+                    <input type="text" name="nxtOfKinSurname" class="form-control" formControlName="nok_surname">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinOtherNames">Other
+                      Names</label>
+                    <input type="text" name="nxtOfKinOtherNames" class="form-control" formControlName="nok_other_names">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinGender">Gender</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="nok_gender" class="custom-control-input" id="nxtOfKinMale" value="Male"
+                        type="radio">
+                      <label class="custom-control-label" for="nxtOfKinMale">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="nok_gender" class="custom-control-input" id="nxtOfKinFemale"
+                        value="female" type="radio">
+                      <label class="custom-control-label" for="nxtOfKinFemale">Female</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinDateOfBirth">Date of
+                      Birth</label>
+                    <input type="date" name="nxtOfKinDateOfBirth" class="form-control" formControlName="nok_dob">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinRelationship">Relationship</label>
+                    <input type="text" name="nxtOfKinRelationship" class="form-control "
+                      formControlName="nok_relationship">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinPhone">Phone</label>
+                    <input type="text" name="nxtOfKinPhone" class="form-control" formControlName="nok_phone">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinAddress">Address</label>
+                    <input name="nxtOfKinAddress" class="form-control" type="text" formControlName="nok_address">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinState">State</label>
+                    <input type="text" name="nxtOfKinState" class="form-control " formControlName="nok_state">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinLocalGovt">Local
+                      Govt.</label>
+                    <input type="text" name="nxtOfKinLocalGovt" class="form-control " formControlName="nok_lga">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="nxtOfKinCity">City</label>
+                    <input type="text" name="nxtOfKinCity" class="form-control" formControlName="nok_city">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <br><input type="submit" class="btn btn-primary">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,272 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class=" text-white">Name: {{name}}</h1>
+        <p class="text-white mt-0 mb-5">Overdraft ID.:&nbsp;{{overdraftId}}</p>
+        <a href="" routerLinkActive="active" routerLink="/overdraft-account" class="btn btn-info">Existing Overdraft
+          Accounts</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0"> Overdraft Account</h3>
+            </div>
+            <div class="col text-right">
+              <a href="" routerLinkActive="active" routerLink="/one-overdraft-payment" (click)="edit()"
+                class="btn btn-sm btn-primary">Payment Records</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="oneOverdraftForm" (ngSubmit)="onSubmit()">
+
+            <!-- Personal Details -->
+            <h6 class="heading-small text-muted mb-4">Personal Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="name">Full Names</label>
+                    <span *ngIf="oneOverdraftForm.controls['name'].hasError('required')" class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="name" class="form-control" type="text" formControlName="name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="address">Residential Address</label>
+                    <span *ngIf="oneOverdraftForm.controls['address'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="address" class="form-control" type="text" formControlName="address">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Purpose of Cash</label>
+                    <span *ngIf="oneOverdraftForm.controls['purposeOfCash'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" class="form-control" formControlName="purposeOfCash">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="makeUpCharges">Make up makeUpCharges</label>
+                    <span *ngIf="oneOverdraftForm.controls['makeUpCharges'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="makeUpCharges" class="form-control" formControlName="makeUpCharges">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Phone No. 1</label>
+                    <span *ngIf="oneOverdraftForm.controls['phone1'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" class="form-control" formControlName="phone1">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="phone2">Phone No. 2</label>
+                    <span *ngIf="oneOverdraftForm.controls['phone2'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="phone2" class="form-control" formControlName="phone2">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Business Details -->
+            <h6 class="heading-small text-muted mb-4">Business Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="businessName">Business Name</label>
+                    <span *ngIf="oneOverdraftForm.controls['businessName'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="businessName" class="form-control" type="text" formControlName="businessName">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="businessAddress">Business Address</label>
+                    <span *ngIf="oneOverdraftForm.controls['businessAddress'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="businessAddress" class="form-control" type="text" formControlName="businessAddress">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Type/Nature of Business</label>
+                    <span *ngIf="oneOverdraftForm.controls['typeOfBusiness'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" class="form-control" formControlName="typeOfBusiness">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="duration">Duration </label>
+                    <span *ngIf="oneOverdraftForm.controls['duration'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="duration" class="form-control" formControlName="duration">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Facility Details -->
+            <h6 class="heading-small text-muted mb-4">Facility Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="facilityType">Facility Type</label>
+                    <span *ngIf="oneOverdraftForm.controls['facilityType'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="facilityType" class="form-control" formControlName="facilityType">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="natureOfFacility">Nature of Facility </label>
+                    <span *ngIf="oneOverdraftForm.controls['natureOfFacility'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="natureOfFacility" class="form-control" formControlName="natureOfFacility">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="paybackTerms">Payback Terms</label>
+                    <span *ngIf="oneOverdraftForm.controls['paybackTerms'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="paybackTerms" class="form-control" formControlName="paybackTerms">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Guarantor Details -->
+            <h6 class="heading-small text-muted mb-4">Guarantor Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantorName">Guarantor's Name</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorName'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="guarantorName" class="form-control" type="text" formControlName="guarantorName">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantorAddress">Guarantor's Residential Address</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorAddress'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input name="guarantorAddress" class="form-control" type="text" formControlName="guarantorAddress">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Guarantor's Phone No. 1</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorPhone1'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" class="form-control" formControlName="guarantorPhone1">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantorPhone2">Guarantor's Phone No. 2</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorPhone2'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="guarantorPhone1" class="form-control" formControlName="guarantorPhone2">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Amount Guarantee</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorAmount'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" class="form-control" formControlName="guarantorAmount">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantorDuration">Duration</label>
+                    <span *ngIf="oneOverdraftForm.controls['guarantorDuration'].hasError('required')"
+                      class="text-danger text-sm mr-2">
+                      &nbsp; *Required field</span>
+                    <input type="text" name="guarantorDuration" class="form-control"
+                      formControlName="guarantorDuration">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <br><input type="submit" class="btn btn-primary">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

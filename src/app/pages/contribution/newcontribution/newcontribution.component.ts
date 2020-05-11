@@ -1,0 +1,85 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ApiService } from 'src/app/service/api.service';
+import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-newcontribution',
+  templateUrl: './newcontribution.component.html',
+  styleUrls: ['./newcontribution.component.scss']
+})
+export class NewcontributionComponent implements OnInit {
+  contributionForm: FormGroup;
+  currentDate: Date;
+  options: any[] = [];
+  filteredOptions: Observable<any[]>;
+
+  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe) { }
+
+  ngOnInit() {
+    this.api.getAllAccounts().subscribe(data => {
+      if (data) {
+        this.options = data['message'];
+        console.log(this.options)
+      }
+      else {
+        console.log('Error loading data!')
+      }
+    });
+
+    this.currentDate = new Date();
+
+    this.contributionForm = this.fb.group({
+      date: this.datePipe.transform(this.currentDate, 'short'),
+      amount: [null, Validators.required],
+      officer_id: 1,
+      account_id: [null, Validators.required],
+      name: [null, Validators.required]
+    });
+
+    this.filteredOptions = this.contributionForm.controls['name'].valueChanges
+      .pipe(
+        startWith(''),
+        map(value => typeof value === 'string' ? value : value.surname),
+        map(name => name ? this._filter(name) : this.options.slice()),
+        map(res => {
+          this.contributionForm.controls['account_id'].setValue(this.myAccountNo(res[0]));
+          return res;
+        })
+      );
+  }
+
+  displayFn(user: any): string {
+    return user && user.surname ? user.surname + ' ' + user.other_names : '';
+  }
+
+  private _filter(name: string): any[] {
+    const filterValue = name.toLowerCase();
+    return this.options.filter(option => option.surname.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  myAccountNo(user: any): any {
+    return user ? user.id : '';
+  }
+
+  onSubmit() {
+    console.log(this.contributionForm.value);
+    if (this.contributionForm.valid) {
+      this.api.addContribution(this.contributionForm.value).subscribe(data => {
+        if (data) {
+          alert('Contribution recorded successfully!');
+          this.ngOnInit();
+        }
+        else {
+          alert('There was an error submitting the data, try again. \nThanks!');
+        }
+      }
+      );
+    }
+    else {
+      alert('One or more fields has error!');
+    }
+  }
+}
