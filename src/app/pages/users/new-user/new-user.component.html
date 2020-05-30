@@ -1,0 +1,110 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"></h1>
+        <p class="text-white mt-0 mb-5"></p>
+        <a href="" routerLinkActive="active" routerLink="/users" class="btn btn-info">See All Users</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Add New User</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <h6 class="heading-small text-muted mb-4">Personal Information</h6>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="name">Name</label>
+                  <span *ngIf="userForm.controls['name'].hasError('required')" class="text-danger text-sm mr-2">
+                    &nbsp; *This field is required</span>
+                  <input id="name" formControlName="name" class="form-control form-control-alternative"
+                    placeholder="Name" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="role">Role</label>
+                  <div class="custom-control custom-radio mb-3">
+                    <input formControlName="role" class="custom-control-input" id="basic" value="basic"
+                      type="radio">
+                    <label class="custom-control-label" for="basic">Basic</label>
+                  </div>
+                  <div class="custom-control custom-radio mb-3">
+                    <input formControlName="role" class="custom-control-input" id="admin" value="admin"
+                      type="radio">
+                    <label class="custom-control-label" for="admin">Admin</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="email">Email</label>
+                  <span *ngIf="userForm.controls['email'].hasError('required')" class="text-danger text-sm mr-2">
+                    &nbsp; *This field is required</span>
+                  <input id="email" formControlName="email" class="form-control form-control-alternative"
+                    placeholder="Email" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="password">Password</label>
+                  <span *ngIf="userForm.controls['password'].hasError('required')" class="text-danger text-sm mr-2">
+                    &nbsp; *This field is required</span>
+                  <input id="password" formControlName="password" class="form-control form-control-alternative"
+                    placeholder="Password" type="password">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label" for="cPassword">Confirm Password</label>
+                  <span *ngIf="userForm.hasError('notSame')" class="text-danger text-sm mr-2">
+                    &nbsp; *Passwords do not match</span>
+                  <input id="cPassword" formControlName="cPassword" class="form-control form-control-alternative"
+                    placeholder="Confirm Password" type="password">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <br><button type="submit" class="btn btn-primary my-4">Add User</button>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

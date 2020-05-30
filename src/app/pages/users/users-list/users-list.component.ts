@@ -3,19 +3,20 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/service/api.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { Data } from 'src/app/providers/data';
 
 @Component({
-  selector: 'app-loan-payment',
-  templateUrl: './loan-payment.component.html',
-  styleUrls: ['./loan-payment.component.css']
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.scss']
 })
-export class LoanPaymentComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'account_id', 'name', 'amount', 'star' ];
+export class UsersListComponent implements OnInit {
+  displayedColumns: string[] = ['name', 'email', 'role', 'star'];
   dataSource: MatTableDataSource<any>;
   isLoadingResults = true;
   resultsLength = 0;
+  isResultError = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -23,7 +24,7 @@ export class LoanPaymentComponent implements OnInit {
   constructor(private api: ApiService, private router: Router, private data: Data) { }
 
   ngOnInit() {
-    this.api.getAllLoanPayments().subscribe(data => {
+    this.api.getUsers().subscribe(data => {
       if (data) {
         this.isLoadingResults = false;
         this.dataSource = new MatTableDataSource(data['message']);
@@ -33,6 +34,8 @@ export class LoanPaymentComponent implements OnInit {
       }
       else {
         console.log('Error loading data!')
+        this.isLoadingResults = false;
+        this.isResultError = true;
       }
     });
     
@@ -47,7 +50,16 @@ export class LoanPaymentComponent implements OnInit {
     }
   }
 
-  edit(row) {
-    this.data.contributionStorage = row;
+  delete(row) {
+    console.log(row);
+    this.api.deleteUser(row['id']).subscribe(data => {
+      if (data) {
+        alert(data['message']);
+        this.ngOnInit();
+      }
+      else {
+        alert('Error deleteing the data')
+      }
+    });
   }
 }

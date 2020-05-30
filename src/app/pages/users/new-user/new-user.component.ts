@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  selector: 'app-new-user',
+  templateUrl: './new-user.component.html',
+  styleUrls: ['./new-user.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class NewUserComponent implements OnInit {
   userForm: FormGroup;
   userName = this.auth.name;
 
@@ -18,10 +16,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      id: this.auth.userId,
-      role: this.auth.role,
-      name: [this.auth.name, Validators.required],
-      email: [this.auth.email, Validators.required],
+      role: ['basic', Validators.required],
+      name: [null, Validators.required],
+      email: [null, Validators.required],
       password: [null, Validators.required],
       cPassword: [null, Validators.required],
     }, {validator: this.checkPasswords });
@@ -37,7 +34,7 @@ export class UserProfileComponent implements OnInit {
   onSubmit() {
     console.log(this.userForm.value);
     if (this.userForm.valid) {
-      this.api.updateUser(this.userForm.get("id").value, this.userForm.value)
+      this.api.addUser(this.userForm.value)
         .subscribe((data) => {
           if (data) {
             alert("Profile updated successfully!");

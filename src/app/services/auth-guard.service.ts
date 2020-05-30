@@ -8,15 +8,11 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(private auth: AuthService, private router: Router) { }
 
   canLoad(route: Route, segments: UrlSegment[]): boolean | Observable<boolean> | Promise<boolean> {
-    // this.auth.role$.subscribe(
-    //   (role) => {
-    //     if (role === 'admin') {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-    // );
+    this.auth.role$.subscribe(role => {
+        if (!(role === 'admin')) 
+          return false;
+      }
+    );
     return true;
   }
 

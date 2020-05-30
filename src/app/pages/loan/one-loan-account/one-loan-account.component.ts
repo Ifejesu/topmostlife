@@ -36,6 +36,7 @@ export class OneLoanAccountComponent implements OnInit {
       name: [this.row["name"], Validators.required],
       maritalStatus: [this.row["maritalStatus"], Validators.required],
       dateOfBirth: [this.row["dateOfBirth"], Validators.required],
+      gender: [this.row["gender"], Validators.required],
       nationality: [this.row["nationality"], Validators.required],
       noOfChildren: [this.row["noOfChildren"], Validators.required],
       noOfChildrenInSchool: [this.row["noOfChildrenInSchool"], Validators.required],

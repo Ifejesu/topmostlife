@@ -31,75 +31,24 @@
         </div>
         <div class="card-body">
           <form [formGroup]="oneLoanForm" (ngSubmit)="onSubmit()">
-            <h6 class="heading-small text-muted mb-4">Account Type</h6>
+            <!-- Personal Details -->
+            <h6 class="heading-small text-muted mb-4">Personal Details</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="account_type" class="custom-control-input" id="dc" value="DC"
-                        type="radio">
-                      <label class="custom-control-label" for="dc">(DC) Daily Contribution</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="account_type" class="custom-control-input" id="ts" value="TS"
-                        type="radio">
-                      <label class="custom-control-label" for="ts">(TS) Target Savings</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="account_type" class="custom-control-input" id="gds" value="GDS"
-                        type="radio">
-                      <label class="custom-control-label" for="gds">(GDS) Group Daily Savings</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label">Date Created</label>
                     <input type="text" class="form-control" formControlName="created" readonly>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label">Amount (&#8358;)</label>
-                    <span *ngIf="oneLoanForm.controls['amount'].hasError('required')" class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
-                    <input type="text" name="amount" placeholder="500" class="form-control" formControlName="amount">
-                  </div>
-                </div>
               </div>
-            </div>
-            <hr class="my-4" />
-
-            <!-- Personal Details -->
-            <h6 class="heading-small text-muted mb-4">Personal Details</h6>
-            <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label">Surname</label>
-                    <span *ngIf="oneLoanForm.controls['surname'].hasError('required')" class="text-danger text-sm mr-2">
+                    <label class="form-control-label">Applicant's Name</label>
+                    <span *ngIf="oneLoanForm.controls['name'].hasError('required')" class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" class="form-control" formControlName="surname">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="other_names">Other Names</label>
-                    <span *ngIf="oneLoanForm.controls['other_names'].hasError('required')"
-                      class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
-                    <input type="text" name="other_names" class="form-control" formControlName="other_names">
+                    <input type="text" class="form-control" formControlName="name">
                   </div>
                 </div>
               </div>
@@ -120,26 +69,52 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="dob">Date of Birth</label>
-                    <span *ngIf="oneLoanForm.controls['dob'].hasError('required')" class="text-danger text-sm mr-2">
+                    <label class="form-control-label" for="dateOfBirth">Date of Birth</label>
+                    <span *ngIf="oneLoanForm.controls['dateOfBirth'].hasError('required')"
+                      class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="date" name="dob" placeholder="02-09-1987" class="form-control" formControlName="dob">
+                    <input type="date" name="dateOfBirth" placeholder="Eg. 02/09/1987" class="form-control"
+                      formControlName="dateOfBirth">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="email">Email address</label>
-                    <input type="email" name="email" class="form-control" formControlName="email">
+                    <label class="form-control-label" for="nationality">Nationality</label>
+                    <span *ngIf="oneLoanForm.controls['nationality'].hasError('required')"
+                      class="text-danger text-sm mr-2">&nbsp; *This field is required</span>
+                    <input type="text" class="form-control" formControlName="nationality">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="phone">Phone</label>
-                    <span *ngIf="oneLoanForm.controls['phone'].hasError('required')" class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
+                    <span *ngIf="oneLoanForm.controls['phone'].hasError('required')"
+                      class="text-danger text-sm mr-2">&nbsp; *This field is required</span>
                     <input type="text" name="phone" class="form-control" formControlName="phone">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="noOfChildren">No. of Children</label>
+                    <input type="text" name="noOfChildren" class="form-control" formControlName="noOfChildren">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="noOfChildrenInSchool">No. of Children Attending
+                      School</label>
+                    <input type="text" name="noOfChildrenInSchool" class="form-control"
+                      formControlName="noOfChildrenInSchool">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="otherDependants">Other Dependants</label>
+                    <input type="text" name="otherDependants" class="form-control" formControlName="otherDependants">
                   </div>
                 </div>
               </div>
@@ -150,61 +125,42 @@
             <h6 class="heading-small text-muted mb-4">Marital Details</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="marital">Marital Status</label>
+                    <label class="form-control-label" for="maritalStatus">Marital Status</label>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="marital_status" class="custom-control-input" id="single" value="Single"
+                      <input formControlName="maritalStatus" class="custom-control-input" id="single" value="Single"
                         type="radio">
                       <label class="custom-control-label" for="single">Single</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="marital_status" class="custom-control-input" id="married" value="Married"
+                      <input formControlName="maritalStatus" class="custom-control-input" id="married" value="Married"
                         type="radio">
                       <label class="custom-control-label" for="married">Married</label>
                     </div>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="spouseName">Spouse Name (If
-                      Married)</label>
-                    <input type="text" name="spouseName" class="form-control" formControlName="spouse_name">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="spousePhone">Spouse Phone (If
-                      Married)</label>
-                    <input type="text" name="spousePhone" class="form-control" formControlName="spouse_phone">
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="maritalStatus" class="custom-control-input" id="widow" value="Widow"
+                        type="radio">
+                      <label class="custom-control-label" for="widow">Widow</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="maritalStatus" class="custom-control-input" id="divorced" value="Divorced"
+                        type="radio">
+                      <label class="custom-control-label" for="divorced">Divorced</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="maritalStatus" class="custom-control-input" id="others" value="Others"
+                        type="radio">
+                      <label class="custom-control-label" for="others">Others</label>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <hr class="my-4" />
-
-            <!-- Bank Details -->
-            <h6 class="heading-small text-muted mb-4">Bank Details</h6>
-            <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="bankName">Bank Name</label>
-                    <input type="text" name="bankName" class="form-control" formControlName="bank_name">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="bankAcctNum">Bank Account
-                      Number</label>
-                    <input type="text" name="bankAcctNum" class="form-control" formControlName="account_no">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="bankAcctName">Bank Account
-                      Name</label>
-                    <input type="text" name="bankAcctName" class="form-control" formControlName="account_name">
+                    <label class="form-control-label" for="nameOfSpouse">Name of Spouse (If Married) </label>
+                    <input type="text" name="nameOfSpouse" class="form-control" formControlName="nameOfSpouse">
                   </div>
                 </div>
               </div>
@@ -212,117 +168,25 @@
             <hr class="my-4" />
 
             <!-- Address -->
-            <h6 class="heading-small text-muted mb-4">Contact information</h6>
+            <h6 class="heading-small text-muted mb-4">Address</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="address">Address</label>
-                    <span *ngIf="oneLoanForm.controls['address'].hasError('required')" class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
-                    <input name="address" class="form-control" type="text" formControlName="address">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="state">State</label>
-                    <span *ngIf="oneLoanForm.controls['state'].hasError('required')" class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
-                    <input type="text" name="state" class="form-control" formControlName="state">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="localGovt">Local Govt.</label>
-                    <span *ngIf="oneLoanForm.controls['lga'].hasError('required')" class="text-danger text-sm mr-2">
-                      &nbsp; *This field is required</span>
-                    <input type="text" name="localGovt" class="form-control " formControlName="lga">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="city">City/Town</label>
-                    <span *ngIf="oneLoanForm.controls['city_town'].hasError('required')"
+                    <label class="form-control-label" for="residentialAddress">Residential Address</label>
+                    <span *ngIf="oneLoanForm.controls['residentialAddress'].hasError('required')"
                       class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" name="city" class="form-control" formControlName="city_town">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4" />
-
-            <!-- Employment Details -->
-            <h6 class="heading-small text-muted mb-4">Employment Details</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="employment">Employment
-                      Status</label>
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="emp_status" class="custom-control-input" id="employed" value="Employed"
-                        type="radio">
-                      <label class="custom-control-label" for="employed">Employed</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="emp_status" class="custom-control-input" id="selfEmployed" type="radio"
-                        value="Self Employed">
-                      <label class="custom-control-label" for="selfEmployed">Self Employed</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="emp_status" class="custom-control-input" id="student" value="Student"
-                        type="radio">
-                      <label class="custom-control-label" for="student">Student</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3">
-                      <input formControlName="emp_status" class="custom-control-input" id="others" value="Others"
-                        type="radio">
-                      <label class="custom-control-label" for="others">Others</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="form-group">
-                    <label class="form-control-label" for="occupation">Business/Occupation</label>
-                    <input type="text" name="occupation" class="form-control " formControlName="emp_occupation">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-control-label" for="employersName">Business/Employer's
-                      Name</label>
-                    <input type="text" name="employersName" class="form-control " formControlName="emp_name">
+                    <input name="residentialAddress" class="form-control" type="text"
+                      formControlName="residentialAddress">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="employersAdd">Business/Employer's
-                      Address</label>
-                    <input type="text" name="employersAdd" class="form-control " formControlName="emp_address">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4" />
-
-            <!-- Next of Kin Details -->
-            <h6 class="heading-small text-muted mb-4">Next of Kin Details</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinSurname">Surname</label>
-                    <input type="text" name="nxtOfKinSurname" class="form-control" formControlName="nok_surname">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinOtherNames">Other
-                      Names</label>
-                    <input type="text" name="nxtOfKinOtherNames" class="form-control" formControlName="nok_other_names">
+                    <label class="form-control-label" for="permanentAddress">Permanent Address</label>
+                    <input name="permanentAddress" class="form-control" type="text" formControlName="permanentAddress">
                   </div>
                 </div>
               </div>
@@ -331,66 +195,277 @@
                   <div class="form-group">
                     <label class="form-control-label" for="nxtOfKinGender">Gender</label>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="nok_gender" class="custom-control-input" id="nxtOfKinMale" value="Male"
+                      <input formControlName="houseType" class="custom-control-input" id="rented" value="Rented"
                         type="radio">
-                      <label class="custom-control-label" for="nxtOfKinMale">Male</label>
+                      <label class="custom-control-label" for="rented">Rented</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="nok_gender" class="custom-control-input" id="nxtOfKinFemale"
-                        value="female" type="radio">
-                      <label class="custom-control-label" for="nxtOfKinFemale">Female</label>
+                      <input formControlName="houseType" class="custom-control-input" id="owned" value="Owned"
+                        type="radio">
+                      <label class="custom-control-label" for="owned">Owned</label>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinDateOfBirth">Date of
-                      Birth</label>
-                    <input type="date" name="nxtOfKinDateOfBirth" class="form-control" formControlName="nok_dob">
+                    <label class="form-control-label" for="lengthOfStay">How long have you lived there?</label>
+                    <input type="text" name="lengthOfStay" class="form-control" formControlName="lengthOfStay">
                   </div>
                 </div>
               </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Business Details -->
+            <h6 class="heading-small text-muted mb-4">Business Details</h6>
+            <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinRelationship">Relationship</label>
-                    <input type="text" name="nxtOfKinRelationship" class="form-control "
-                      formControlName="nok_relationship">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinPhone">Phone</label>
-                    <input type="text" name="nxtOfKinPhone" class="form-control" formControlName="nok_phone">
+                    <label class="form-control-label" for="nameOfBusiness">Name of Business</label>
+                    <input type="text" name="nameOfBusiness" class="form-control" formControlName="nameOfBusiness">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinAddress">Address</label>
-                    <input name="nxtOfKinAddress" class="form-control" type="text" formControlName="nok_address">
+                    <label class="form-control-label" for="address">Business  Address</label>
+                    <input type="text" name="address" class="form-control " formControlName="address">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinState">State</label>
-                    <input type="text" name="nxtOfKinState" class="form-control " formControlName="nok_state">
+                    <label class="form-control-label" for="">Business Premises</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="locationType" class="custom-control-input" id="rented" value="Rented" type="radio">
+                      <label class="custom-control-label" for="rented">Rented</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="locationType" class="custom-control-input" id="owned" type="radio"
+                        value="Owned">
+                      <label class="custom-control-label" for="selfEmployed">Owned</label>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinLocalGovt">Local
-                      Govt.</label>
-                    <input type="text" name="nxtOfKinLocalGovt" class="form-control " formControlName="nok_lga">
+                    <label class="form-control-label" for="typeOfBusiness">Type of Business</label>
+                    <input type="text" name="typeOfBusiness" class="form-control " formControlName="typeOfBusiness">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="nxtOfKinCity">City</label>
-                    <input type="text" name="nxtOfKinCity" class="form-control" formControlName="nok_city">
+                    <label class="form-control-label" for="closestMarket">Closest Market to Business</label>
+                    <input type="text" name="closestMarket" class="form-control " formControlName="closestMarket">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Bank Details -->
+            <h6 class="heading-small text-muted mb-4">Account in Other Banks/Financial Institutions</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankName">Bank</label>
+                    <input type="text" name="bankName" class="form-control" formControlName="bankName">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankAccountNo">Account No.</label>
+                    <input type="text" name="bankAccountNo" class="form-control" formControlName="bankAccountNo">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankAccountStatus">Status (Dr/Cr)</label>
+                    <input type="text" name="bankAccountStatus" class="form-control" formControlName="bankAccountStatus">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="bankBranch">Branch</label>
+                    <input type="text" name="bankBranch" class="form-control" formControlName="bankBranch">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            
+            <!-- Guarantors -->
+            <h6 class="heading-small text-muted mb-4">Guarantors</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor1Name">Name</label>
+                    <input name="guarantor1Name" class="form-control" type="text"
+                      formControlName="guarantor1Name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor1Address">Residential Address</label>
+                    <input name="guarantor1Address" class="form-control" type="text"
+                      formControlName="guarantor1Address">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor1Phone1">Phone 1</label>
+                    <input type="text" name="guarantor1Phone1" class="form-control" formControlName="guarantor1Phone1">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor1Phone2">Phone 2</label>
+                    <input type="text" name="guarantor1Phone2" class="form-control" formControlName="guarantor1Phone2">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor2Name">Name</label>
+                    <input name="guarantor2Name" class="form-control" type="text"
+                      formControlName="guarantor2Name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor2Address">Residential Address</label>
+                    <input name="guarantor2Address" class="form-control" type="text"
+                      formControlName="guarantor2Address">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor2Phone1">Phone 1</label>
+                    <input type="text" name="guarantor2Phone1" class="form-control" formControlName="guarantor2Phone1">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="guarantor2Phone2">Phone 2</label>
+                    <input type="text" name="guarantor2Phone2" class="form-control" formControlName="guarantor2Phone2">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+
+            <!-- Loan Details -->
+            <h6 class="heading-small text-muted mb-4">Loan Details</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="loanPurpose">Loan Purpose</label>
+                    <input name="loanPurpose" class="form-control" type="text" formControlName="loanPurpose">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="amountAppliedFor">Amount Applied For (&#8358;)</label>
+                    <input type="text" name="amountAppliedFor" class="form-control " formControlName="amountAppliedFor">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="approvedLoanAmount">Approved Loan Amount</label>
+                    <input type="text" name="approvedLoanAmount" class="form-control "
+                      formControlName="approvedLoanAmount">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="approvedTerms">Terms</label>
+                    <input type="text" name="approvedTerms" class="form-control" formControlName="approvedTerms">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="interestRate">Interest Rate</label>
+                    <input type="text" name="interestRate" class="form-control " formControlName="interestRate">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="processingFees">Loan Processing Fees</label>
+                    <input type="text" name="processingFees" class="form-control " formControlName="processingFees">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="savingsDeposit">Deposit</label>
+                    <input type="text" name="savingsDeposit" class="form-control" formControlName="savingsDeposit">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="totalRepaymentAmount">Total Amount to Repay</label>
+                    <input type="text" name="totalRepaymentAmount" class="form-control "
+                      formControlName="totalRepaymentAmount">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="totalNoOfRepayment">Total No. of Loan Payments</label>
+                    <input type="text" name="totalNoOfRepayment" class="form-control "
+                      formControlName="totalNoOfRepayment">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="frequencyOfPayment">Frequency of Payment</label>
+                    <input type="text" name="frequencyOfPayment" class="form-control"
+                      formControlName="frequencyOfPayment">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="instalmentAmount">Instalment Amount</label>
+                    <input type="text" name="instalmentAmount" class="form-control "
+                      formControlName="instalmentAmount">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="penaltyRate">Penalty Rate</label>
+                    <input type="text" name="penaltyRate" class="form-control "
+                      formControlName="penaltyRate">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label class="form-control-label" for="disbursementDate">Loan Disbursement Date</label>
+                    <input type="text" name="disbursementDate" placeholder="Eg. 12/03/2020" class="form-control"
+                      formControlName="disbursementDate">
                   </div>
                 </div>
               </div>
@@ -401,7 +476,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <br><input type="submit" class="btn btn-primary">
+                    <br><input type="submit" value="Update" class="btn btn-primary">
                   </div>
                 </div>
                 <div class="col-lg-4">

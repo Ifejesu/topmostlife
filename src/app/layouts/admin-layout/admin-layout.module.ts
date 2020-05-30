@@ -43,6 +43,8 @@ import { OneOverdraftPaymentComponent } from '../../pages/overdraft/one-overdraf
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Data } from '../../providers/data';
 import { AuthGuard } from 'src/app/services/auth-guard.service';
+import { NewUserComponent } from 'src/app/pages/users/new-user/new-user.component';
+import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -67,6 +69,8 @@ import { AuthGuard } from 'src/app/services/auth-guard.service';
   declarations: [
     DashboardComponent,
     UserProfileComponent,
+    UsersListComponent,
+    NewUserComponent,
     NewsavingsaccountComponent,
     AllsavingsaccountComponent,
     OnesavingsaccountComponent,

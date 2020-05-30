@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/service/api.service';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-new-loan-payment',
@@ -16,7 +17,7 @@ export class NewLoanPaymentComponent implements OnInit {
   options: any[] = [];
   filteredOptions: Observable<any[]>;
 
-  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
   ngOnInit() {
     this.api.getAllAccounts().subscribe(data => {
@@ -34,7 +35,7 @@ export class NewLoanPaymentComponent implements OnInit {
     this.loanPaymentForm = this.fb.group({
       date: this.datePipe.transform(this.currentDate, 'short'),
       amount: [null, Validators.required],
-      officer_id: 1,
+      officer_id: this.auth.userId,
       account_id: [null, Validators.required],
       name: [null, Validators.required]
     });

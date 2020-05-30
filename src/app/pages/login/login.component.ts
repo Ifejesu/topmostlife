@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
           this.auth.userId = data['userId'];
           this.auth.role = data['role'];
           this.auth.name = data['name'];
+          this.auth.email = data['email'];
           this.auth.role$.next(data['role']);
           this.auth.isAuth$.next(true);
           this.router.navigate(['/dashboard']);

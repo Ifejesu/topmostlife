@@ -199,7 +199,7 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
-  adduser(data){
+  addUser(data){
     return this.http.post(API_URL + 'user', data, httpOptions).pipe(
       catchError(this.handleError)
     );

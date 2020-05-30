@@ -5,6 +5,7 @@
 export const environment = {
   production: false
 };
+//export const API_URL = "localhost:3000/api/v1/";
 export const API_URL = "https://topmostlife-api.herokuapp.com/api/v1/";
 
 /*

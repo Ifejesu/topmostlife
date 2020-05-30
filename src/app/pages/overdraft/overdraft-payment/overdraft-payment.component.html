@@ -86,7 +86,8 @@
               </tr>
             </table>
           </div>
-          <mat-paginator [length]="resultsLength" [pageSize]="5"></mat-paginator>
+          <mat-paginator [length]="resultsLength" [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons>
+          </mat-paginator>
         </div>
       </div>
     </div>

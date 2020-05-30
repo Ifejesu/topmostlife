@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-new-loan-account',
@@ -12,47 +13,58 @@ export class NewLoanAccountComponent implements OnInit {
   loanForm: FormGroup;
   currentDate: Date;
 
-  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
   ngOnInit() {
     this.currentDate = new Date();
 
     this.loanForm = this.fb.group({
-      created: this.datePipe.transform(this.currentDate, 'short'),
-      amount: [null, Validators.required],
-      officer_id: 1,
-      account_type: ['DC', Validators.required],
-      surname: [null, Validators.required],
-      other_names: [null, Validators.required],
+      created: this.currentDate,
+      officer_id: this.auth.userId,
+      name: ['', Validators.required],
+      maritalStatus: ['Married', Validators.required],
+      dateOfBirth: ['', Validators.required],
       gender: ['Male', Validators.required],
-      dob: [null, Validators.required],
-      email: ' ',
-      phone: [null, Validators.required],
-      image_url: ' ',
-      marital_status: ['Single', Validators.required],
-      spouse_name: [' ', Validators.required],
-      spouse_phone: [' ', Validators.required],
-      bank_name: [' ', Validators.required],
-      account_no: [' ', Validators.required],
-      account_name: [' ', Validators.required],
-      address: [null, Validators.required],
-      state: [null, Validators.required],
-      lga: [null, Validators.required],
-      city_town: [null, Validators.required],
-      emp_status: ['Employed', Validators.required],
-      emp_occupation: [' ', Validators.required],
-      emp_name: [' ', Validators.required],
-      emp_address: [' ', Validators.required],
-      nok_surname: [' ', Validators.required],
-      nok_other_names: [' ', Validators.required],
-      nok_gender: ['Male', Validators.required],
-      nok_dob: [' ', Validators.required],
-      nok_relationship: [' ', Validators.required],
-      nok_phone: [' ', Validators.required],
-      nok_address: [' ', Validators.required],
-      nok_state: [' ', Validators.required],
-      nok_lga: [' ', Validators.required],
-      nok_city: [' ', Validators.required]
+      nationality: ['', Validators.required],
+      noOfChildren: [' ', Validators.required],
+      noOfChildrenInSchool: [' ', Validators.required],
+      otherDependants: ' ',
+      nameOfSpouse: [' ', Validators.required],
+      residentialAddress: ' ',
+      permanentAddress: [' ', Validators.required],
+      houseType: ['Rented', Validators.required],
+      lengthOfStay: [' ', Validators.required],
+      phone: ['', Validators.required],
+      nameOfBusiness: [' ', Validators.required],
+      typeOfBusiness: [' ', Validators.required],
+      address: [' ', Validators.required],
+      closestMarket: [' ', Validators.required],
+      locationType: [' ', Validators.required],
+      bankName: [' ', Validators.required],
+      bankAccountNo: [' ', Validators.required],
+      bankBranch: [' ', Validators.required],
+      bankAccountStatus: [' ', Validators.required],
+      guarantor1Name: [' ', Validators.required],
+      guarantor1Address: [' ', Validators.required],
+      guarantor1Phone1: [' ', Validators.required],
+      guarantor1Phone2: [' ', Validators.required],
+      guarantor2Name: [' ', Validators.required],
+      guarantor2Address: [' ', Validators.required],
+      guarantor2Phone1: [' ', Validators.required],
+      guarantor2Phone2: [' ', Validators.required],
+      amountAppliedFor: [' ', Validators.required],
+      loanPurpose: [' ', Validators.required],
+      approvedLoanAmount: [' ', Validators.required],
+      approvedTerms: [' ', Validators.required],
+      interestRate: [' ', Validators.required],
+      processingFees: ['', Validators.required],
+      totalRepaymentAmount: ['', Validators.required],
+      totalNoOfRepayment: ['', Validators.required],
+      frequencyOfPayment: ['', Validators.required],
+      penaltyRate: ['', Validators.required],
+      disbursementDate: ['', Validators.required],
+      instalmentAmount: ['', Validators.required],
+      savingsDeposit: ['', Validators.required],
     });
   }
 

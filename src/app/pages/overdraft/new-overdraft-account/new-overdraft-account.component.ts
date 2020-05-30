@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-new-overdraft-account',
@@ -12,14 +13,14 @@ export class NewOverdraftAccountComponent implements OnInit {
   overdraftForm: FormGroup;
   currentDate: Date;
 
-  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
   ngOnInit() {
     this.currentDate = new Date();
 
     this.overdraftForm = this.fb.group({
       created: this.datePipe.transform(this.currentDate, 'short'),
-      officer_id: 1,
+      officer_id: this.auth.userId,
       name: [null, Validators.required],
       address: [null, Validators.required],
       purposeOfCash: [null, Validators.required],

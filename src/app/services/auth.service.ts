@@ -11,4 +11,5 @@ export class AuthService {
   public userId: string;
   public role: string;
   public name: string;
+  public email: string;
 }

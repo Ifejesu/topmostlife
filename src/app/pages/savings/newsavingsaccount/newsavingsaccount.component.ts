@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/service/api.service';
 import { DatePipe } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-newsavingsaccount',
@@ -12,7 +13,7 @@ export class NewsavingsaccountComponent implements OnInit {
   savingsForm: FormGroup;
   currentDate: Date;
 
-  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe) { }
+  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
   ngOnInit() {
     this.currentDate = new Date();
@@ -20,7 +21,7 @@ export class NewsavingsaccountComponent implements OnInit {
     this.savingsForm = this.fb.group({
       created: this.datePipe.transform(this.currentDate, 'short'),
       amount: [null, Validators.required],
-      officer_id: 1,
+      officer_id: this.auth.userId,
       account_type: ['DC', Validators.required],
       surname: [null, Validators.required],
       other_names: [null, Validators.required],

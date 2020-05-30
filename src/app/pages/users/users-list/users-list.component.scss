@@ -10,6 +10,12 @@
   overflow: auto;
 }
 
+.example-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
 .example-loading-shade {
   position: absolute;
   top: 0;
