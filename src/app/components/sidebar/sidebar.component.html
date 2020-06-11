@@ -77,8 +77,14 @@
         </li>
         <li *ngIf="admin" class="nav-item">
           <a routerLinkActive="active" routerLink="/users" class="nav-link">
-            <i class="ni ni-single-02 text-yellow"></i>
+            <i class="ni ni-single-02 text-orange"></i>
             Users
+          </a>
+        </li>
+        <li *ngIf="admin" class="nav-item">
+          <a routerLinkActive="active" routerLink="/revenue" class="nav-link">
+            <i class="ni ni-chart-bar-32 text-orange"></i>
+            Revenues
           </a>
         </li>
       </ul>
