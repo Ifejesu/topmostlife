@@ -18,7 +18,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/overdraft-account', title: 'Overdraft Account', icon: 'ni-single-copy-04 text-green', class: '' },
   { path: '/overdraft-deposit', title: 'Overdraft Deposit', icon: 'ni-box-2 text-green', class: '' },
   { path: '/overdraft-withdrawal', title: 'Overdraft Withdrawal', icon: 'ni-money-coins text-green', class: '' },
-  //{ path: '/users', title: 'Users',  icon:'ni-single-02 text-yellow', class: '' }
+  // { path: '/users', title: 'Users',  icon:'ni-single-02 text-yellow', class: '' }
 ];
 
 export const routeTitles: any[] = [
@@ -26,24 +26,29 @@ export const routeTitles: any[] = [
   { path: '/user-profile', title: 'User Profile' },
   { path: '/new-user', title: 'New User' },
   { path: '/users', title: 'Users' },
+
   { path: '/savings-account', title: 'Savings Accounts' },
+  { path: '/savings-account/:id', title: 'Savings Account' },
   { path: '/new-savings-account', title: 'New Savings Account' },
-  { path: '/edit-savings-account', title: 'Savings Account' },
   { path: '/contributions', title: 'Contributions' },
-  { path: '/new-contribution', title: 'New Contribution' },
-  { path: '/single-contribution', title: 'Contribution' },
+  { path: '/savings-statement/:id', title: 'Account Statement' },
+  { path: '/savings-deposit', title: 'Savings Deposit' },
+  { path: '/savings-withdrawal', title: 'Savings Withdrawal' },
+
   { path: '/loan-account', title: 'Loan Accounts' },
-  { path: '/loan-payment', title: 'Loan Payments' },
+  { path: '/loan-account/:id', title: 'Loan Account' },
   { path: '/new-loan-account', title: 'New Loan Account' },
+  { path: '/loan-payment', title: 'Loan Payments' },
+  { path: '/loan-payment:/id', title: 'Loan Repayments' },
   { path: '/new-loan-payment', title: 'New Loan Payment' },
-  { path: '/one-loan-account', title: 'Loan Account' },
-  { path: '/one-loan-payment', title: 'Loan Payment' },
+
   { path: '/overdraft-account', title: 'Overdraft Accounts' },
-  { path: '/overdraft-payment', title: 'Overdraft Payments' },
+  { path: '/overdraft-account/:id', title: 'Overdraft Account' },
   { path: '/new-overdraft-account', title: 'New Overdraft Account' },
-  { path: '/new-overdraft-payment', title: 'New Overdraft Payment' },
-  { path: '/one-overdraft-account', title: 'Overdraft Account' },
-  { path: '/one-overdraft-payment', title: 'Overdraft Payment' },
+  { path: '/overdraft-payment', title: 'Overdraft Payments' },
+  { path: '/overdraft-statement/:id', title: 'Overdraft Account Statement' },
+  { path: '/overdraft-deposit', title: 'Overdraft Deposit' },
+  { path: '/overdraft-withdrawal', title: 'Overdraft Withdrawal' },
 ];
 
 @Component({
@@ -61,7 +66,7 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
-    this.user = this.auth.name
+    this.user = this.auth.name;
     if (this.auth.role$.value === 'admin') {
       this.admin = true;
     }

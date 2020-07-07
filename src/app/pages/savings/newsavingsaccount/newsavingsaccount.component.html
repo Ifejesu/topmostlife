@@ -65,8 +65,31 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label">Amount (&#8358;)</label>
-                    <span *ngIf="savingsForm.controls['amount'].hasError('required')" class="text-danger text-sm mr-2">  &nbsp; *This field is required</span>
-                    <input type="text" name="amount" placeholder="500" class="form-control" formControlName="amount">
+                    <span *ngIf="savingsForm.controls['amount'].hasError('required')" class="text-danger text-sm mr-2">&nbsp;*This field is required</span>
+                    <input type="text" name="amount" placeholder="e.g. &#8358;1000" class="form-control" formControlName="amount">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="paid_registration">Paid Registration Fee</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="paid_registration" class="custom-control-input" id="yes" value="Yes" type="radio">
+                      <label class="custom-control-label" for="yes">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="paid_registration" class="custom-control-input" id="no" value="No" type="radio">
+                      <label class="custom-control-label" for="no">No</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="registration_fee">Registration Fee (&#8358;)</label>
+                    <span *ngIf="savingsForm.controls['registration_fee'].hasError('required')" class="text-danger text-sm mr-2">
+                       &nbsp; *This field is required</span>
+                    <input type="text" name="registration_fee" placeholder="e.g. &#8358;500" class="form-control" formControlName="registration_fee">
                   </div>
                 </div>
               </div>
@@ -82,7 +105,7 @@
                     <label class="form-control-label">Surname</label>
                     <span *ngIf="savingsForm.controls['surname'].hasError('required')" class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" class="form-control" formControlName="surname">
+                    <input type="text" placeholder="e.g. Adekunle" class="form-control" formControlName="surname">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -91,7 +114,7 @@
                     <span *ngIf="savingsForm.controls['other_names'].hasError('required')"
                       class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" name="other_names" class="form-control" formControlName="other_names">
+                    <input type="text" name="other_names" placeholder="e.g Francis Bayo" class="form-control" formControlName="other_names">
                   </div>
                 </div>
               </div>
@@ -115,7 +138,7 @@
                     <label class="form-control-label" for="dob">Date of Birth</label>
                     <span *ngIf="savingsForm.controls['dob'].hasError('required')" class="text-danger text-sm mr-2">
                        &nbsp; *This field is required</span>
-                    <input type="date" name="dob" placeholder="02-09-1987" class="form-control" formControlName="dob">
+                    <input type="date" name="dob" placeholder="e.g. 02-09-1987" class="form-control" formControlName="dob">
                   </div>
                 </div>
               </div>
@@ -123,7 +146,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="email">Email address</label>
-                    <input type="email" name="email" class="form-control" formControlName="email">
+                    <input type="email" name="email" placeholder="e.g dele12@gmail.com" class="form-control" formControlName="email">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -131,7 +154,7 @@
                     <label class="form-control-label" for="phone">Phone</label>
                     <span *ngIf="savingsForm.controls['phone'].hasError('required')" class="text-danger text-sm mr-2">
                        &nbsp; *This field is required</span>
-                    <input type="text" name="phone" class="form-control" formControlName="phone">
+                    <input type="text" name="phone" placeholder="e.g. 09078665543" class="form-control" formControlName="phone">
                   </div>
                 </div>
               </div>
@@ -211,7 +234,7 @@
                     <label class="form-control-label" for="address">Address</label>
                     <span *ngIf="savingsForm.controls['address'].hasError('required')" class="text-danger text-sm mr-2">
                        &nbsp; *This field is required</span>
-                    <input name="address" class="form-control" type="text" formControlName="address">
+                    <input name="address" class="form-control" placeholder="e.g. 5, Lagos Road, Ikorodu" type="text" formControlName="address">
                   </div>
                 </div>
               </div>
@@ -221,7 +244,7 @@
                     <label class="form-control-label" for="state">State</label>
                     <span *ngIf="savingsForm.controls['state'].hasError('required')" class="text-danger text-sm mr-2">
                        &nbsp; *This field is required</span>
-                    <input type="text" name="state" class="form-control" formControlName="state">
+                    <input type="text" name="state" placeholder="e.g Lagos" class="form-control" formControlName="state">
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -229,7 +252,7 @@
                     <label class="form-control-label" for="localGovt">Local Govt.</label>
                     <span *ngIf="savingsForm.controls['lga'].hasError('required')" class="text-danger text-sm mr-2">
                        &nbsp; *This field is required</span>
-                    <input type="text" name="localGovt" class="form-control " formControlName="lga">
+                    <input type="text" name="localGovt" placeholder="e.g. Ikorodu" class="form-control " formControlName="lga">
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -238,7 +261,7 @@
                     <span *ngIf="savingsForm.controls['city_town'].hasError('required')"
                       class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" name="city" class="form-control" formControlName="city_town">
+                    <input type="text" name="city" placeholder="e.g. Ikorodu" class="form-control" formControlName="city_town">
                   </div>
                 </div>
               </div>

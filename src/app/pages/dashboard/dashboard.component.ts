@@ -2,9 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from 'src/app/service/api.service';
-import { Router, NavigationExtras } from '@angular/router';
-import { Data } from 'src/app/providers/data';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +10,7 @@ import { Data } from 'src/app/providers/data';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  aDisplayedColumns: string[] = ['date', 'account_id', 'name', 'amount', 'star'];
+  aDisplayedColumns: string[] = ['date', 'account_id', 'name', 'credit', 'debit', 'balance', 'charges', 'star' ];
   aDataSource: MatTableDataSource<any>;
   bDisplayedColumns: string[] = ['date', 'account_id', 'name', 'amount', 'star'];
   bDataSource: MatTableDataSource<any>;
@@ -29,7 +27,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private api: ApiService, private router: Router, private data: Data) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.getTotalNos();
@@ -39,59 +37,45 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  editA(row) {
-    this.data.contributionStorage = row;
-  }
 
   getContributions() {
-    this.api.getAllContributions().subscribe(data => {
-      if (data) {
+    this.api.getAllContributions().subscribe(res => {
+      if (res) {
         this.isLoadingResults = false;
-        this.aDataSource = new MatTableDataSource(data['message']);
+        this.aDataSource = new MatTableDataSource(res['data']);
         this.aResultsLength = this.aDataSource.data.length;
         this.aDataSource.paginator = this.paginator;
         this.aDataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
-  }
-
-  editB(row) {
-    this.data.loanPaymentStorage = row;
   }
 
   getLoanPayments() {
-    this.api.getAllLoanPayments().subscribe(data => {
-      if (data) {
+    this.api.getAllLoanPayments().subscribe(res => {
+      if (res) {
         this.isLoadingResults = false;
-        this.bDataSource = new MatTableDataSource(data['message']);
+        this.bDataSource = new MatTableDataSource(res['data']);
         this.bResultsLength = this.bDataSource.data.length;
         this.bDataSource.paginator = this.paginator;
         this.bDataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
   }
 
-  editC(row) {
-    this.data.overdraftPaymentStorage = row;
-  }
-
   getOverdraftPayments() {
-    this.api.getAllOverdraftPayments().subscribe(data => {
-      if (data) {
+    this.api.getAllOverdraftPayments().subscribe(res => {
+      if (res) {
         this.isLoadingResults = false;
-        this.cDataSource = new MatTableDataSource(data['message']);
+        this.cDataSource = new MatTableDataSource(res['data']);
         this.cResultsLength = this.cDataSource.data.length;
         this.cDataSource.paginator = this.paginator;
         this.cDataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
   }
@@ -114,28 +98,25 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalNos() {
-    this.api.getAllAccounts().subscribe(data => {
-      if (data) {
-        this.savingsTotal = data['message'].length;
-      }
-      else {
-        console.log('Error loading data!')
-      }
-    });
-    this.api.getAllLoans().subscribe(data => {
-      if (data) {
-        this.loanTotal = data['message'].length;
-      }
-      else {
-        console.log('Error loading data!')
+    this.api.getAllAccounts().subscribe(res => {
+      if (res) {
+        this.savingsTotal = res['data'].length;
+      } else {
+        console.log('Error loading data!');
       }
     });
-    this.api.getAllOverdrafts().subscribe(data => {
-      if (data) {
-        this.overdraftTotal = data['message'].length;
+    this.api.getAllLoans().subscribe(res => {
+      if (res) {
+        this.loanTotal = res['data'].length;
+      } else {
+        console.log('Error loading data!');
       }
-      else {
-        console.log('Error loading data!')
+    });
+    this.api.getAllOverdrafts().subscribe(res => {
+      if (res) {
+        this.overdraftTotal = res['data'].length;
+      } else {
+        console.log('Error loading data!');
       }
     });
   }

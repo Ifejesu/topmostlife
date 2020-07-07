@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -75,14 +75,12 @@ export class NewLoanAccountComponent implements OnInit {
         if (data) {
           alert('Account created successfully!');
           this.ngOnInit();
-        }
-        else { 
+        } else {
           alert('There was an error submitting the data, try again. \nThanks!');
         }
       }
       );
-    }
-    else {
+    } else {
       alert('One or more fields has error!');
     }
   }

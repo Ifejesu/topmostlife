@@ -13,10 +13,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from "@angular/material/checkbox";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
@@ -39,12 +39,13 @@ import { OneOverdraftAccountComponent } from '../../pages/overdraft/one-overdraf
 import { NewOverdraftAccountComponent } from '../../pages/overdraft/new-overdraft-account/new-overdraft-account.component';
 import { NewOverdraftPaymentComponent } from '../../pages/overdraft/new-overdraft-payment/new-overdraft-payment.component';
 import { OneOverdraftPaymentComponent } from '../../pages/overdraft/one-overdraft-payment/one-overdraft-payment.component';
+import { NewUserComponent } from 'src/app/pages/users/new-user/new-user.component';
+import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.component';
+import { SavingsWithdrawComponent } from '../../pages/savings-withdraw/savings-withdraw.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Data } from '../../providers/data';
-import { AuthGuard } from 'src/app/services/auth-guard.service';
-import { NewUserComponent } from 'src/app/pages/users/new-user/new-user.component';
-import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.component';
+import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/overdraft-withdraw.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -88,9 +89,11 @@ import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.co
     OneOverdraftAccountComponent,
     NewOverdraftAccountComponent,
     NewOverdraftPaymentComponent,
-    OneOverdraftPaymentComponent
+    OneOverdraftPaymentComponent,
+    SavingsWithdrawComponent,
+    OverdraftWithdrawComponent
   ],
-  providers:[DatePipe, MatIconRegistry, Data, AuthGuard]
+  providers: [ DatePipe, MatIconRegistry, Data]
 })
 
 export class AdminLayoutModule {}

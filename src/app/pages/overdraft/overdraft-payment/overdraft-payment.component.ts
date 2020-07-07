@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { Data } from 'src/app/providers/data';
 
@@ -30,12 +30,11 @@ export class OverdraftPaymentComponent implements OnInit {
         this.resultsLength = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
-    
+
   }
 
   applyFilter(event: Event) {

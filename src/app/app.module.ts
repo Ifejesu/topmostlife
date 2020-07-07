@@ -12,8 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { AuthInterceptor } from "./interceptors/auth-interceptor";
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { AuthGuard } from './services/auth-guard.service';
+import { SavingsProfileComponent } from './pages/savings-profile/savings-profile.component';
 
 
 @NgModule({
@@ -30,9 +31,10 @@ import { AuthGuard } from './services/auth-guard.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    SavingsProfileComponent
   ],
-  providers: [AuthGuard,{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}],
+  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

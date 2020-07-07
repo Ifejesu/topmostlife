@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -23,10 +23,9 @@ export class NewLoanPaymentComponent implements OnInit {
     this.api.getAllAccounts().subscribe(data => {
       if (data) {
         this.options = data['message'];
-        console.log(this.options)
-      }
-      else {
-        console.log('Error loading data!')
+        console.log(this.options);
+      } else {
+        console.log('Error loading data!');
       }
     });
 
@@ -72,14 +71,12 @@ export class NewLoanPaymentComponent implements OnInit {
         if (data) {
           alert('Contribution recorded successfully!');
           this.ngOnInit();
-        }
-        else {
+        } else {
           alert('There was an error submitting the data, try again. \nThanks!');
         }
       }
       );
-    }
-    else {
+    } else {
       alert('One or more fields has error!');
     }
   }

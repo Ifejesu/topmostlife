@@ -2,9 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from 'src/app/service/api.service';
-import { Router, NavigationExtras } from '@angular/router';
-import { Data } from 'src/app/providers/data';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-allsavingsaccount',
@@ -12,7 +10,7 @@ import { Data } from 'src/app/providers/data';
   styleUrls: ['./allsavingsaccount.component.scss']
 })
 export class AllsavingsaccountComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'account_type', 'surname', 'other_names', 'amount', 'created', 'star'];
+  displayedColumns: string[] = ['id', 'account_type', 'name', 'paid_registration', 'balance', 'created', 'star'];
   dataSource: MatTableDataSource<any>;
   isLoadingResults = true;
   resultsLength = 0;
@@ -20,22 +18,21 @@ export class AllsavingsaccountComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private api: ApiService, private router: Router, private data: Data) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getAllAccounts().subscribe(data => {
-      if (data) {
+    this.api.getAllAccounts().subscribe(res => {
+      if (res) {
         this.isLoadingResults = false;
-        this.dataSource = new MatTableDataSource(data['message']);
+        this.dataSource = new MatTableDataSource(res['data']);
         this.resultsLength = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+        this.dataSource.sort = this.sort;
+      } else {
+        console.log('Error loading data!');
       }
     });
-    
+
   }
 
   applyFilter(event: Event) {
@@ -45,9 +42,5 @@ export class AllsavingsaccountComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  edit(row) {
-    this.data.savingsStorage = row;
   }
 }

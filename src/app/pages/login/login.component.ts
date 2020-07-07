@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.api.login(this.loginForm.value).subscribe(data => {
         if (data) {
+          localStorage.setItem('token', data['token']);
+          localStorage.setItem('userId', data['userId']);
+          localStorage.setItem('role', data['role']);
+          localStorage.setItem('name', data['name']);
+          localStorage.setItem('email', data['email']);
+
           this.auth.token = data['token'];
           this.auth.userId = data['userId'];
           this.auth.role = data['role'];
@@ -35,14 +41,12 @@ export class LoginComponent implements OnInit {
           this.auth.role$.next(data['role']);
           this.auth.isAuth$.next(true);
           this.router.navigate(['/dashboard']);
-        }
-        else {
+        } else {
           alert('There was an error submitting the data, try again. \nThanks!');
         }
       }
       );
-    }
-    else {
+    } else {
       alert('One or more fields has error!');
     }
   }

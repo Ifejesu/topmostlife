@@ -4,11 +4,11 @@
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-      <div class="col-lg-7 col-md-10">
+      <div class="col">
         <h1 class=" text-white">Name: {{name}}</h1>
-        <p class="text-white mt-0 mb-5">Loan ID:&nbsp;{{loanId}}</p>
-        <a href="" routerLinkActive="active" routerLink="/loan-account" class="btn btn-info">Existing Loan
-          Accounts</a>
+        <h1 class=" text-white">Loan ID:&nbsp;{{loanId}}</h1>
+        <p class="text-white mt-0 mb-5">Loan Balance:&nbsp; &#8358;{{balance}}</p>
+        <a href="" routerLinkActive="active" [routerLink]="['/loan-payment', loanId]" class="btn btn-info">Loan Repayments</a>
       </div>
     </div>
   </div>
@@ -24,8 +24,6 @@
               <h3 class="mb-0"> Loan Account</h3>
             </div>
             <div class="col text-right">
-              <a href="" routerLinkActive="active" routerLink="/one-loan-payment" (click)="edit()"
-                class="btn btn-sm btn-primary">Payment Records</a>
             </div>
           </div>
         </div>

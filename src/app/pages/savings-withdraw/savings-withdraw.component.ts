@@ -7,12 +7,13 @@ import { map, startWith } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-new-overdraft-payment',
-  templateUrl: './new-overdraft-payment.component.html',
-  styleUrls: ['./new-overdraft-payment.component.css']
+  selector: 'app-savings-withdraw',
+  templateUrl: './savings-withdraw.component.html',
+  styleUrls: ['./savings-withdraw.component.scss']
 })
-export class NewOverdraftPaymentComponent implements OnInit {
-  overdraftPaymentForm: FormGroup;
+export class SavingsWithdrawComponent implements OnInit {
+
+  contributionForm: FormGroup;
   currentDate: Date;
   options: any[] = [];
   filteredOptions: Observable<any[]>;
@@ -31,21 +32,23 @@ export class NewOverdraftPaymentComponent implements OnInit {
 
     this.currentDate = new Date();
 
-    this.overdraftPaymentForm = this.fb.group({
+    this.contributionForm = this.fb.group({
       date: this.datePipe.transform(this.currentDate, 'short'),
       amount: [null, Validators.required],
+      balance: 0,
+      charges: 0,
       officer_id: this.auth.userId,
       account_id: [null, Validators.required],
       name: [null, Validators.required]
     });
 
-    this.filteredOptions = this.overdraftPaymentForm.controls['name'].valueChanges
+    this.filteredOptions = this.contributionForm.controls['name'].valueChanges
       .pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.surname),
         map(name => name ? this._filter(name) : this.options.slice()),
         map(res => {
-          this.overdraftPaymentForm.controls['account_id'].setValue(this.myAccountNo(res[0]));
+          this.contributionForm.controls['account_id'].setValue(this.myAccountNo(res[0]));
           return res;
         })
       );
@@ -65,9 +68,9 @@ export class NewOverdraftPaymentComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.overdraftPaymentForm.value);
-    if (this.overdraftPaymentForm.valid) {
-      this.api.addContribution(this.overdraftPaymentForm.value).subscribe(data => {
+    console.log(this.contributionForm.value);
+    if (this.contributionForm.valid) {
+      this.api.addContribution(this.contributionForm.value).subscribe(data => {
         if (data) {
           alert('Contribution recorded successfully!');
           this.ngOnInit();

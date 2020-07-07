@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -15,28 +15,32 @@ export class NewcontributionComponent implements OnInit {
   contributionForm: FormGroup;
   currentDate: Date;
   options: any[] = [];
+  row: any;
+  balance: number;
   filteredOptions: Observable<any[]>;
 
   constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
   ngOnInit() {
-    this.api.getAllAccounts().subscribe(data => {
-      if (data) {
-        this.options = data['message'];
-        console.log(this.options)
-      }
-      else {
-        console.log('Error loading data!')
+    this.api.getAllAccounts().subscribe(res => {
+      if (res) {
+        this.options = res['data'];
+        console.log(this.options);
+      } else {
+        console.log('Error loading data!');
       }
     });
 
     this.currentDate = new Date();
 
     this.contributionForm = this.fb.group({
-      date: this.datePipe.transform(this.currentDate, 'short'),
-      amount: [null, Validators.required],
-      officer_id: this.auth.userId,
       account_id: [null, Validators.required],
+      credit: [null, Validators.required],
+      debit: [0, Validators.required],
+      balance: [0, Validators.required],
+      charges: [0, Validators.required],
+      date: this.datePipe.transform(this.currentDate, 'short'),
+      officer_id: this.auth.userId,
       name: [null, Validators.required]
     });
 
@@ -66,20 +70,27 @@ export class NewcontributionComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.contributionForm.value);
+    this.api.getOneAccount(this.contributionForm.controls['account_id'].value).subscribe(res => {
+      if (res) {
+        this.row = res['data'];
+        this.balance = this.row['balance'] + this.contributionForm.controls['credit'];
+        this.contributionForm.controls['balance'].setValue(this.balance);
+      } else {
+        console.log('Error loading data!');
+      }
+    });
+
     if (this.contributionForm.valid) {
       this.api.addContribution(this.contributionForm.value).subscribe(data => {
         if (data) {
           alert('Contribution recorded successfully!');
           this.ngOnInit();
-        }
-        else {
+        } else {
           alert('There was an error submitting the data, try again. \nThanks!');
         }
       }
       );
-    }
-    else {
+    } else {
       alert('One or more fields has error!');
     }
   }

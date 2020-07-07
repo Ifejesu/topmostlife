@@ -21,31 +21,37 @@ import { OneOverdraftAccountComponent } from '../../pages/overdraft/one-overdraf
 import { NewOverdraftAccountComponent } from '../../pages/overdraft/new-overdraft-account/new-overdraft-account.component';
 import { NewOverdraftPaymentComponent } from '../../pages/overdraft/new-overdraft-payment/new-overdraft-payment.component';
 import { OneOverdraftPaymentComponent } from '../../pages/overdraft/one-overdraft-payment/one-overdraft-payment.component';
-import { AuthGuard } from "../../services/auth-guard.service";
 import { NewUserComponent } from 'src/app/pages/users/new-user/new-user.component';
 import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.component';
+import { SavingsWithdrawComponent } from 'src/app/pages/savings-withdraw/savings-withdraw.component';
+import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/overdraft-withdraw.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'users', component: UsersListComponent },
     { path: 'new-user', component: NewUserComponent },
+
     { path: 'savings-account', component: AllsavingsaccountComponent },
+    { path: 'savings-account/:id', component: OnesavingsaccountComponent },
     { path: 'new-savings-account', component: NewsavingsaccountComponent },
-    { path: 'edit-savings-account', component: OnesavingsaccountComponent },
     { path: 'contributions', component: AllcontributionsComponent },
-    { path: 'new-contribution', component: NewcontributionComponent },
-    { path: 'single-contribution', component: OnecontributionComponent },
+    { path: 'savings-statement/:id', component: OnecontributionComponent },
+    { path: 'savings-deposit/:id', component: NewcontributionComponent },
+    { path: 'savings-withdrawal/:id', component: SavingsWithdrawComponent },
+
     { path: 'loan-account', component: LoanAccountComponent },
-    { path: 'loan-payment', component: LoanPaymentComponent },
+    { path: 'loan-account/:id', component: OneLoanAccountComponent },
     { path: 'new-loan-account', component: NewLoanAccountComponent },
+    { path: 'loan-payment', component: LoanPaymentComponent },
+    { path: 'loan-payment/:id', component: OneLoanPaymentComponent },
     { path: 'new-loan-payment', component: NewLoanPaymentComponent },
-    { path: 'one-loan-account', component: OneLoanAccountComponent },
-    { path: 'one-loan-payment', component: OneLoanPaymentComponent },
+
     { path: 'overdraft-account', component: OverdraftAccountComponent },
-    { path: 'overdraft-payment', component: OverdraftPaymentComponent },
+    { path: 'overdraft-account/:id', component: OneOverdraftAccountComponent },
     { path: 'new-overdraft-account', component: NewOverdraftAccountComponent },
-    { path: 'new-overdraft-payment', component: NewOverdraftPaymentComponent },
-    { path: 'one-overdraft-account', component: OneOverdraftAccountComponent },
-    { path: 'one-overdraft-payment', component: OneOverdraftPaymentComponent },
+    { path: 'overdraft-payment', component: OverdraftPaymentComponent },
+    { path: 'overdraft-statement/:id', component: OneOverdraftPaymentComponent },
+    { path: 'overdraft-deposit', component: NewOverdraftPaymentComponent },
+    { path: 'overdraft-withdrawal', component: OverdraftWithdrawComponent }
 ];

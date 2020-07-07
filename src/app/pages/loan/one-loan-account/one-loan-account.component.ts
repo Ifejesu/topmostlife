@@ -1,110 +1,111 @@
-import { Component, OnInit } from "@angular/core";
-import { Data } from "src/app/providers/data";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { ApiService } from "src/app/service/api.service";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Data } from 'src/app/providers/data';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-one-loan-account',
   templateUrl: './one-loan-account.component.html',
-  styleUrls: ['./one-loan-account.component.css']
+  styleUrls: ['./one-loan-account.component.css'],
 })
 export class OneLoanAccountComponent implements OnInit {
-  row: any = this.data.loanStorage;
+  row: any;
   oneLoanForm: FormGroup;
-  name: string;
+  name = '';
   loanId: number;
+  balance: number;
 
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
-    private data: Data,
-    private router: Router
-  ) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    if (!this.row) {
-      this.router.navigateByUrl("/loan-account");
-    }
-    this.name = this.row["name"];
-    this.loanId = this.row["id"];
+    this.route.params.subscribe((params) => {
+      this.loanId = params['id'];
+    });
+
+    this.api.getOneLoan(this.loanId).subscribe(res => {
+      if (res) {
+        this.row = res['message'];
+        this.name = this.row['name'];
+        this.balance = 0.0;
+        this.oneLoanForm.setValue(res['message']);
+      } else {
+        console.log('Error loading data!');
+      }
+    });
 
     this.oneLoanForm = this.fb.group({
-      id: this.row["id"],
-      created: this.row["created"],
-      officer_id: this.row["officer_id"],
-      name: [this.row["name"], Validators.required],
-      maritalStatus: [this.row["maritalStatus"], Validators.required],
-      dateOfBirth: [this.row["dateOfBirth"], Validators.required],
-      gender: [this.row["gender"], Validators.required],
-      nationality: [this.row["nationality"], Validators.required],
-      noOfChildren: [this.row["noOfChildren"], Validators.required],
-      noOfChildrenInSchool: [this.row["noOfChildrenInSchool"], Validators.required],
-      otherDependants: this.row["otherDependants"],
-      nameOfSpouse: [this.row["nameOfSpouse"], Validators.required],
-      residentialAddress: this.row["residentialAddress"],
-      permanentAddress: [this.row["permanentAddress"], Validators.required],
-      houseType: [this.row["houseType"], Validators.required],
-      lengthOfStay: [this.row["lengthOfStay"], Validators.required],
-      phone: [this.row["phone"], Validators.required],
-      nameOfBusiness: [this.row["nameOfBusiness"], Validators.required],
-      typeOfBusiness: [this.row["typeOfBusiness"], Validators.required],
-      address: [this.row["address"], Validators.required],
-      closestMarket: [this.row["closestMarket"], Validators.required],
-      locationType: [this.row["locationType"], Validators.required],
-      bankName: [this.row["bankName"], Validators.required],
-      bankAccountNo: [this.row["bankAccountNo"], Validators.required],
-      bankBranch: [this.row["bankBranch"], Validators.required],
-      bankAccountStatus: [this.row["bankAccountStatus"], Validators.required],
-      guarantor1Name: [this.row["guarantor1Name"], Validators.required],
-      guarantor1Address: [this.row["guarantor1Address"], Validators.required],
-      guarantor1Phone1: [this.row["guarantor1Phone1"], Validators.required],
-      guarantor1Phone2: [this.row["guarantor1Phone2"], Validators.required],
-      guarantor2Name: [this.row["guarantor2Name"], Validators.required],
-      guarantor2Address: [this.row["guarantor2Address"], Validators.required],
-      guarantor2Phone1: [this.row["guarantor2Phone1"], Validators.required],
-      guarantor2Phone2: [this.row["guarantor2Phone2"], Validators.required],
-      amountAppliedFor: [this.row["amountAppliedFor"], Validators.required],
-      loanPurpose: [this.row["loanPurpose"], Validators.required],
-      approvedLoanAmount: [this.row["approvedLoanAmount"], Validators.required],
-      approvedTerms: [this.row["approvedTerms"], Validators.required],
-      interestRate: [this.row["interestRate"], Validators.required],
-      processingFees: [this.row["processingFees"], Validators.required],
-      totalRepaymentAmount: [this.row["totalRepaymentAmount"], Validators.required],
-      totalNoOfRepayment: [this.row["totalNoOfRepayment"], Validators.required],
-      frequencyOfPayment: [this.row["frequencyOfPayment"], Validators.required],
-      penaltyRate: [this.row["penaltyRate"], Validators.required],
-      disbursementDate: [this.row["disbursementDate"], Validators.required],
-      instalmentAmount: [this.row["instalmentAmount"], Validators.required],
-      savingsDeposit: [this.row["savingsDeposit"], Validators.required],
+      id: this.loanId,
+      created: ['', Validators.required],
+      officer_id: ['', Validators.required],
+      name: ['', Validators.required],
+      maritalStatus: ['Married', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      gender: ['Male', Validators.required],
+      nationality: ['', Validators.required],
+      noOfChildren: [' ', Validators.required],
+      noOfChildrenInSchool: [' ', Validators.required],
+      otherDependants: ' ',
+      nameOfSpouse: [' ', Validators.required],
+      residentialAddress: ' ',
+      permanentAddress: [' ', Validators.required],
+      houseType: ['Rented', Validators.required],
+      lengthOfStay: [' ', Validators.required],
+      phone: ['', Validators.required],
+      nameOfBusiness: [' ', Validators.required],
+      typeOfBusiness: [' ', Validators.required],
+      address: [' ', Validators.required],
+      closestMarket: [' ', Validators.required],
+      locationType: [' ', Validators.required],
+      bankName: [' ', Validators.required],
+      bankAccountNo: [' ', Validators.required],
+      bankBranch: [' ', Validators.required],
+      bankAccountStatus: [' ', Validators.required],
+      guarantor1Name: [' ', Validators.required],
+      guarantor1Address: [' ', Validators.required],
+      guarantor1Phone1: [' ', Validators.required],
+      guarantor1Phone2: [' ', Validators.required],
+      guarantor2Name: [' ', Validators.required],
+      guarantor2Address: [' ', Validators.required],
+      guarantor2Phone1: [' ', Validators.required],
+      guarantor2Phone2: [' ', Validators.required],
+      amountAppliedFor: [' ', Validators.required],
+      loanPurpose: [' ', Validators.required],
+      approvedLoanAmount: [' ', Validators.required],
+      approvedTerms: [' ', Validators.required],
+      interestRate: [' ', Validators.required],
+      processingFees: ['', Validators.required],
+      totalRepaymentAmount: ['', Validators.required],
+      totalNoOfRepayment: ['', Validators.required],
+      frequencyOfPayment: ['', Validators.required],
+      penaltyRate: ['', Validators.required],
+      disbursementDate: ['', Validators.required],
+      instalmentAmount: ['', Validators.required],
+      savingsDeposit: ['', Validators.required],
     });
   }
-  edit() {
-    this.data.loanPaymentStorage = {
-      loanId: this.row['id'],
-      name: this.row['name']
-    };
-  }
+
   onSubmit() {
     console.log(this.oneLoanForm.value);
     if (this.oneLoanForm.valid) {
       this.api
-        .updateLoan(this.oneLoanForm.get("id").value, this.oneLoanForm.value)
+        .updateLoan(this.oneLoanForm.get('id').value, this.oneLoanForm.value)
         .subscribe((data) => {
           if (data) {
-            alert("Loan Account updated successfully!");
-            this.data.loanStorage = this.oneLoanForm.value;
-            this.row = this.oneLoanForm.value;
-            this.ngOnInit();
+            alert('Loan Account updated successfully!');
           } else {
             alert(
-              "There was an error submitting the data, try again. \nThanks!"
+              'There was an error submitting the data, try again. \nThanks!'
             );
           }
         });
     } else {
       console.log(this.oneLoanForm);
-      alert("One or more fields has error!");
+      alert('One or more fields has error!');
     }
   }
 }

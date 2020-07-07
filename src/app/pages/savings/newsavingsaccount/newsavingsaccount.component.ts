@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -19,17 +19,20 @@ export class NewsavingsaccountComponent implements OnInit {
     this.currentDate = new Date();
 
     this.savingsForm = this.fb.group({
-      created: this.datePipe.transform(this.currentDate, 'short'),
-      amount: [null, Validators.required],
-      officer_id: this.auth.userId,
       account_type: ['DC', Validators.required],
+      amount: [null, Validators.required],
+      balance: [0, Validators.required],
+      paid_registration: ['No', Validators.required],
+      registration_fee: [null, Validators.required],
+      officer_id: this.auth.userId,
+      created: this.datePipe.transform(this.currentDate, 'short'),
       surname: [null, Validators.required],
       other_names: [null, Validators.required],
       gender: ['Male', Validators.required],
       dob: [null, Validators.required],
-      email: ' ',
+      email: [' ', Validators.required],
       phone: [null, Validators.required],
-      image_url: ' ',
+      image_url: ['https://res.cloudinary.com/lilytechng/image/upload/v1591568659/1_cbpkio.jpg', Validators.required],
       marital_status: ['Single', Validators.required],
       spouse_name: [' ', Validators.required],
       spouse_phone: [' ', Validators.required],
@@ -64,14 +67,12 @@ export class NewsavingsaccountComponent implements OnInit {
         if (data) {
           alert('Account created successfully!');
           this.ngOnInit();
-        }
-        else { 
+        } else {
           alert('There was an error submitting the data, try again. \nThanks!');
         }
       }
       );
-    }
-    else {
+    } else {
       alert('One or more fields has error!');
     }
   }

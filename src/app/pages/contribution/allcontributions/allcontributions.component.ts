@@ -2,9 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from 'src/app/service/api.service';
-import { Router, NavigationExtras } from '@angular/router';
-import { Data } from 'src/app/providers/data';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-allcontributions',
@@ -12,7 +10,7 @@ import { Data } from 'src/app/providers/data';
   styleUrls: ['./allcontributions.component.scss']
 })
 export class AllcontributionsComponent implements OnInit {
-  displayedColumns: string[] = ['date', 'account_id', 'name', 'amount', 'star' ];
+  displayedColumns: string[] = ['date', 'account_id', 'name', 'credit', 'debit', 'balance', 'charges', 'star' ];
   dataSource: MatTableDataSource<any>;
   isLoadingResults = true;
   resultsLength = 0;
@@ -20,22 +18,21 @@ export class AllcontributionsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private api: ApiService, private router: Router, private data: Data) { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getAllContributions().subscribe(data => {
-      if (data) {
+    this.api.getAllContributions().subscribe(res => {
+      if (res) {
         this.isLoadingResults = false;
-        this.dataSource = new MatTableDataSource(data['message']);
+        this.dataSource = new MatTableDataSource(res['data']);
         this.resultsLength = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
-    
+
   }
 
   applyFilter(event: Event) {
@@ -47,7 +44,4 @@ export class AllcontributionsComponent implements OnInit {
     }
   }
 
-  edit(row) {
-    this.data.contributionStorage = row;
-  }
 }

@@ -78,8 +78,7 @@
               <h3 class="mb-0">Recent Contributions</h3>
             </div>
             <div class="col text-right">
-              <a href="" routerLinkActive="active" routerLink="/contributions" class="btn btn-sm btn-primary">See
-                all</a>
+              <a routerLinkActive="active" routerLink="/contributions" class="btn btn-sm btn-primary">See all</a>
             </div>
           </div>
         </div>
@@ -93,34 +92,51 @@
               matSortActive="date" matSortDisableClear matSortDirection="desc">
               <!-- ID Column -->
               <ng-container matColumnDef="date" sticky>
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
                 <td mat-cell *matCellDef="let row"> {{row.date}} </td>
               </ng-container>
 
               <!-- Account Type Column -->
               <ng-container matColumnDef="account_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Account No. </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No.</th>
                 <td mat-cell *matCellDef="let row"> {{row.account_id}} </td>
               </ng-container>
 
               <!-- Surname Column -->
               <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
                 <td mat-cell *matCellDef="let row"> {{row.surname}} {{row.other_names}}</td>
               </ng-container>
 
-              <!-- Amount Column -->
-              <ng-container matColumnDef="amount">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
-                <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
+              <!-- Credit Column -->
+              <ng-container matColumnDef="credit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit(&#8358;)</th>
+                <td mat-cell *matCellDef="let row"> {{row.credit}} </td>
+              </ng-container>
+              
+              <!-- Debit Column -->
+              <ng-container matColumnDef="debit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit(&#8358;)</th>
+                <td mat-cell *matCellDef="let row"> {{row.debit}} </td>
+              </ng-container>
+              
+              <!-- Balance Column -->
+              <ng-container matColumnDef="balance">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance(&#8358;)</th>
+                <td mat-cell *matCellDef="let row"> {{row.balance}} </td>
+              </ng-container>
+
+              <!-- Charges Column -->
+              <ng-container matColumnDef="charges">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Charges(&#8358;)</th>
+                <td mat-cell *matCellDef="let row"> {{row.charges}} </td>
               </ng-container>
 
               <!-- Star Column -->
               <ng-container matColumnDef="star" stickyEnd>
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let row">
-                  <a href="" href="" routerLinkActive="active" routerLink="/single-contribution" mat-icon-button
-                    class="nav-link" (click)="editA(row)">
+                  <a href="" routerLinkActive="active" [routerLink]="['/savings-statement', row.account_id]" mat-icon-button class="nav-link">
                     <mat-icon>open_in_new</mat-icon>
                   </a>
                 </td>
@@ -188,8 +204,7 @@
               <ng-container matColumnDef="star" stickyEnd>
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let row">
-                  <a href="" href="" routerLinkActive="active" routerLink="/one-loan-payment" mat-icon-button
-                    class="nav-link" (click)="editB(row)">
+                  <a href="" routerLinkActive="active" [routerLink]="['/loan-payment', row.account_id]" mat-icon-button class="nav-link">
                     <mat-icon>open_in_new</mat-icon>
                   </a>
                 </td>
@@ -268,8 +283,7 @@
               <ng-container matColumnDef="star" stickyEnd>
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let row">
-                  <a href="" href="" routerLinkActive="active" routerLink="/one-overdraft-payment" mat-icon-button
-                    class="nav-link" (click)="editC(row)">
+                  <a href="" routerLinkActive="active" [routerLink]="['/overdraft-statement', row.overdraft_id]" mat-icon-button class="nav-link">
                     <mat-icon>open_in_new</mat-icon>
                   </a>
                 </td>

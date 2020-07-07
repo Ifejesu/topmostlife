@@ -7,8 +7,6 @@
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white"></h1>
         <p class="text-white mt-0 mb-5"></p>
-        <a href="" routerLinkActive="active" routerLink="/contributions" class="btn btn-info">All Contributions
-          Record</a>
       </div>
     </div>
   </div>
@@ -21,7 +19,7 @@
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
-              <h3 class="mb-0">New Contribution Record</h3>
+              <h3 class="mb-0">Savings Deposit</h3>
             </div>
           </div>
         </div>
@@ -50,7 +48,7 @@
                     <span *ngIf="contributionForm.controls['account_id'].hasError('required')"
                       class="text-danger text-sm mr-2">
                       &nbsp; *This field is required</span>
-                    <input type="text" readonly class="form-control" formControlName="account_id">
+                    <input type="text" class="form-control" formControlName="account_id">
                   </div>
                 </div>
               </div>

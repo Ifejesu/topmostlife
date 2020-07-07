@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 import { Data } from 'src/app/providers/data';
 
@@ -26,25 +26,21 @@ export class OneLoanPaymentComponent implements OnInit {
   constructor(private api: ApiService, private router: Router, private data: Data) { }
 
   ngOnInit() {
-    if (!this.row) {
-      this.router.navigateByUrl("/loan-payment");
-    }
-    this.name = this.row["surname"] + " " + this.row["other_names"];
-    this.account_no = this.row["account_id"];
+    this.name = this.row['surname'] + ' ' + this.row['other_names'];
+    this.account_no = this.row['account_id'];
     this.api.getOneContribution(this.account_no).subscribe(data => {
       if (data) {
-        console.log(data)
+        console.log(data);
         this.isLoadingResults = false;
         this.dataSource = new MatTableDataSource(data['message']);
         this.resultsLength = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-      }
-      else {
-        console.log('Error loading data!')
+      } else {
+        console.log('Error loading data!');
       }
     });
-    
+
   }
 
   applyFilter(event: Event) {
