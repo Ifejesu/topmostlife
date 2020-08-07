@@ -36,7 +36,7 @@
           <div class="table-responsive example-table-container">
             <table class="table align-items-center table-flush" mat-table [dataSource]="dataSource" matSort
               matSortActive="date" matSortDisableClear matSortDirection="desc">
-              <!-- ID Column -->
+              <!-- Date Column -->
               <ng-container matColumnDef="date" sticky>
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
                 <td mat-cell *matCellDef="let row"> {{row.date}} </td>
@@ -45,25 +45,25 @@
               <!-- Credit Column -->
               <ng-container matColumnDef="credit">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Credit(&#8358;)</th>
-                <td mat-cell *matCellDef="let row"> {{row.credit}} </td>
+                <td mat-cell *matCellDef="let row">&#8358;{{row.credit}}</td>
               </ng-container>
               
               <!-- Debit Column -->
               <ng-container matColumnDef="debit">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Debit(&#8358;)</th>
-                <td mat-cell *matCellDef="let row"> {{row.debit}} </td>
+                <td mat-cell *matCellDef="let row">&#8358;{{row.debit}}</td>
               </ng-container>
               
               <!-- Balance Column -->
               <ng-container matColumnDef="balance">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Balance(&#8358;)</th>
-                <td mat-cell *matCellDef="let row"> {{row.balance}} </td>
+                <td mat-cell *matCellDef="let row">&#8358;{{row.balance}}</td>
               </ng-container>
 
               <!-- Charges Column -->
               <ng-container matColumnDef="charges">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Charges(&#8358;)</th>
-                <td mat-cell *matCellDef="let row"> {{row.charges}} </td>
+                <td mat-cell *matCellDef="let row">&#8358;{{row.charges}}</td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true;"></tr>

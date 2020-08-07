@@ -226,4 +226,30 @@ export class ApiService {
     );
   }
 
+  getRevenues() {
+    return this.http.get(API_URL + 'revenue', httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  addRevenue(data) {
+    return this.http.post(API_URL + 'revenue', data, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  getOneRevenue(id) {
+    return this.http.get(API_URL + 'revenue/' + id, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  updateRevenue(id, data) {
+    return this.http.put(API_URL + 'revenue/' + id, data, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+  deleteRevenue(id) {
+    return this.http.delete(API_URL + 'revenue/' + id, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 }

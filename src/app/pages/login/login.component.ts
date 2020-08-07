@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', data['role']);
           localStorage.setItem('name', data['name']);
           localStorage.setItem('email', data['email']);
+          localStorage.setItem('isLoggedIn', 'true');
 
           this.auth.token = data['token'];
           this.auth.userId = data['userId'];

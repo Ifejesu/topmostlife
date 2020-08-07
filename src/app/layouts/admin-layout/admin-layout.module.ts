@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
@@ -46,6 +47,8 @@ import { SavingsWithdrawComponent } from '../../pages/savings-withdraw/savings-w
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Data } from '../../providers/data';
 import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/overdraft-withdraw.component';
+import { SavingsProfileComponent } from 'src/app/pages/savings-profile/savings-profile.component';
+import { RevenueComponent } from 'src/app/pages/revenue/revenue.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -66,6 +69,7 @@ import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/ove
     MatProgressSpinnerModule,
     MatIconModule,
     MatAutocompleteModule,
+    MatTableExporterModule
   ],
   declarations: [
     DashboardComponent,
@@ -91,7 +95,9 @@ import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/ove
     NewOverdraftPaymentComponent,
     OneOverdraftPaymentComponent,
     SavingsWithdrawComponent,
-    OverdraftWithdrawComponent
+    OverdraftWithdrawComponent,
+    SavingsProfileComponent,
+    RevenueComponent,
   ],
   providers: [ DatePipe, MatIconRegistry, Data]
 })

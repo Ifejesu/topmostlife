@@ -1,1 +1,400 @@
-<p>savings-profile works!</p>
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col">
+        <h1 class=" text-white">Name: {{name}}</h1>
+        <h1 class=" text-white">Account No.:&nbsp;{{account_id}}</h1>
+        <p class="text-white mt-0 mb-5">Balance:&nbsp;&#8358;{{balance}}</p>
+        <p class="text-white mt-0 mb-5">Account Officer:&nbsp;{{officer}}</p>
+        <a routerLinkActive="active" [routerLink]="['/savings-statement', account_no]" class="btn btn-info">Account
+          Statement</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="javascript:void(0)">
+                <img src="{{image_url}}" alt="Picture" class="rounded-circle">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div>
+              <i class="ni education_hat mr-2"></i>Account Actions
+            </div>
+            <hr class="my-4" />
+            <a routerLinkActive="active" [routerLink]="['/savings-deposit', account_id]" class="btn btn btn-success">Deposit</a>
+            <a routerLinkActive="active" [routerLink]="['/savings-withdrawal', account_id]" class="btn btn btn-danger">Withdraw</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Account Details</h3>
+            </div>
+            <div class="col text-right">
+              <a routerLinkActive="active" [routerLink]="['/update-savings-account', account_id]"
+                class="btn btn-sm btn-info">Update Account Info</a>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Account No.:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{account_id}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Account Type:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{account_type}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Balance:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">&#8358;{{balance}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Amount:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">&#8358;{{amount}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Paid Registration:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{paid_registration}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Registration Fee:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">&#8358;{{registration_fee}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Date Created:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{created}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Account Officer:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{officer}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <h3>Personal Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Gender:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{gender}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Date of Birth:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{dob}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Email:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{email}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Phone:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{phone}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <h3>Marital Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Marital Status:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{marital_status}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Spouse Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{spouse_name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Spouse Phone:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{spouse_phone}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <h3>Bank Account Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Bank Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{bank_name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Bank Account No.:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{account_no}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Bank Account Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{account_name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <h3>Contact Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Address:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{address}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">State:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{state}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">LGA:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{lga}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">City/Town:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{city_town}}</span></h3>
+                </td>
+              </tr>
+
+              <tr>
+                <th>
+                  <h3>Employment/Business Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Employment Status:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{emp_status}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Business/Occupation:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{emp_occupation}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Business/Employers Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{emp_name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Business/Employers Address:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{emp_address}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <h3>Next of Kin Details</h3>
+                </th>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Name:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_name}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Gender:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_gender}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Date of Birth:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_dob}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Relationship:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_relationship}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Phone:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_phone}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">Address:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_address}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">State:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_state}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">LGA:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_lga}}</span></h3>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="mb-0 text-sm">City/Town:</span>
+                </th>
+                <td>
+                  <h3><span class="font-weight-light">{{nok_city}}</span></h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

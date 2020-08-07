@@ -28,22 +28,21 @@
   width: 100%;
 }
 
-/* Column Widths *
 .mat-column-id,
-.mat-column-account_type,
-.mat-column-surname,
-.mat-column-amount
- {
+.mat-column-balance {
+  max-width: 80px;
+}
+
+.mat-column-name{
+  max-width: 110px;
+}
+
+.mat-column-account_type{
   max-width: 60px;
 }
 
-.mat-column-created {
-  max-width: 124px;
-}*/
-
-.mat-column-id,
-.mat-column-account_type,
-.mat-column-surname,
-.mat-column-amount {
-  max-width: 96px;
+.mat-column-deposit,
+.mat-column-withdraw,
+.mat-column-star {
+  max-width: 30px;
 }

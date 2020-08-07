@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, ValidatorFn } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { DatePipe } from '@angular/common';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-savings-withdraw',
@@ -12,73 +12,89 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./savings-withdraw.component.scss']
 })
 export class SavingsWithdrawComponent implements OnInit {
-
-  contributionForm: FormGroup;
+withdrawalForm: FormGroup;
   currentDate: Date;
-  options: any[] = [];
-  filteredOptions: Observable<any[]>;
+  row: any;
+  account_id: number;
+  debit: number;
+  totalDebit: number;
+  balance = 0;
 
-  constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private api: ApiService,
+    private datePipe: DatePipe,
+    private auth: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.api.getAllAccounts().subscribe(data => {
-      if (data) {
-        this.options = data['message'];
-        console.log(this.options);
+    this.route.params.subscribe((params) => {
+      this.account_id = params['id'];
+    });
+
+    this.currentDate = new Date();
+
+    this.api.getOneAccount(this.account_id).subscribe((res) => {
+      if (res) {
+        this.row = res['data'];
+        this.balance = this.row['balance'];
+        this.withdrawalForm.controls['balance'].setValue(this.row['balance']);
+        this.withdrawalForm.controls['name'].setValue(this.row['surname'] + ' ' + this.row['other_names']);
       } else {
         console.log('Error loading data!');
       }
     });
 
-    this.currentDate = new Date();
-
-    this.contributionForm = this.fb.group({
+    this.withdrawalForm = this.fb.group({
+      account_id: this.account_id,
+      credit: 0,
+      debit: [null, Validators.required],
+      balance: this.balance,
+      charges: [null, Validators.required],
       date: this.datePipe.transform(this.currentDate, 'short'),
-      amount: [null, Validators.required],
-      balance: 0,
-      charges: 0,
       officer_id: this.auth.userId,
-      account_id: [null, Validators.required],
-      name: [null, Validators.required]
+      name: '',
     });
 
-    this.filteredOptions = this.contributionForm.controls['name'].valueChanges
-      .pipe(
-        startWith(''),
-        map(value => typeof value === 'string' ? value : value.surname),
-        map(name => name ? this._filter(name) : this.options.slice()),
-        map(res => {
-          this.contributionForm.controls['account_id'].setValue(this.myAccountNo(res[0]));
-          return res;
-        })
-      );
-  }
+    this.withdrawalForm.controls['debit'].valueChanges.subscribe(debitAmt => {
+      this.totalDebit = Number(debitAmt) + Number(this.withdrawalForm.controls['charges'].value);
+      if (Number(this.withdrawalForm.controls['balance'].value) > this.totalDebit) {
+        this.withdrawalForm.controls['balance'].setErrors({'incorrect': null});
+      } else {
+        this.withdrawalForm.controls['balance'].setErrors({'incorrect': true});
+      }
+      this.withdrawalForm.controls['balance'].updateValueAndValidity();
+    });
 
-  displayFn(user: any): string {
-    return user && user.surname ? user.surname + ' ' + user.other_names : '';
-  }
+    this.withdrawalForm.controls['charges'].valueChanges.subscribe(charges => {
+      this.totalDebit = Number(charges) + Number(this.withdrawalForm.controls['debit'].value);
+      if (Number(this.withdrawalForm.controls['balance'].value) > this.totalDebit) {
+        this.withdrawalForm.controls['balance'].setErrors({'incorrect': null});
+      } else {
+        this.withdrawalForm.controls['balance'].setErrors({'incorrect': true});
+      }
+      this.withdrawalForm.controls['balance'].updateValueAndValidity();
+    });
 
-  private _filter(name: string): any[] {
-    const filterValue = name.toLowerCase();
-    return this.options.filter(option => option.surname.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  myAccountNo(user: any): any {
-    return user ? user.id : '';
   }
 
   onSubmit() {
-    console.log(this.contributionForm.value);
-    if (this.contributionForm.valid) {
-      this.api.addContribution(this.contributionForm.value).subscribe(data => {
-        if (data) {
-          alert('Contribution recorded successfully!');
-          this.ngOnInit();
-        } else {
-          alert('There was an error submitting the data, try again. \nThanks!');
-        }
-      }
-      );
+    if (this.withdrawalForm.valid) {
+      this.debit = Number(this.withdrawalForm.controls['debit'].value) + Number(this.withdrawalForm.controls['charges'].value);
+      this.withdrawalForm.controls['balance'].setValue(this.balance - this.debit);
+      this.api.addContribution(this.withdrawalForm.value)
+        .subscribe((data) => {
+          if (data) {
+            alert('Withdrawal processed successfully!');
+            this.router.navigateByUrl('/savings-account');
+          } else {
+            alert(
+              'There was an error submitting the data, try again. \nThanks!'
+            );
+          }
+        });
     } else {
       alert('One or more fields has error!');
     }

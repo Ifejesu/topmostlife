@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from 'src/app/providers/data';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-onesavingsaccount',

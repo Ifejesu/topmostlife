@@ -37,44 +37,51 @@
               <!-- ID Column -->
               <ng-container matColumnDef="id" sticky>
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Account No.</th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <td mat-cell *matCellDef="let row">{{row.id}}</td>
               </ng-container>
 
               <!-- Account Type Column -->
               <ng-container matColumnDef="account_type">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Account Type</th>
-                <td mat-cell *matCellDef="let row"> {{row.account_type}} </td>
+                <td mat-cell *matCellDef="let row">{{row.account_type}}</td>
               </ng-container>
 
               <!-- Surname Column -->
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let row"> {{row.surname}} {{row.other_names}}</td>
-              </ng-container>
-
-              <!-- Other Names Column -->
-              <ng-container matColumnDef="paid_registration">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Paid Registration</th>
-                <td mat-cell *matCellDef="let row"> {{row.paid_registration}} </td>
+                <td mat-cell *matCellDef="let row">{{row.surname}} {{row.other_names}}</td>
               </ng-container>
 
               <!-- Amount Column -->
               <ng-container matColumnDef="balance">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Account Balance (&#8358;)</th>
-                <td mat-cell *matCellDef="let row"> {{row.balance}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Account Balance</th>
+                <td mat-cell *matCellDef="let row">&#8358;{{row.balance}}</td>
               </ng-container>
 
               <!-- Created Column -->
-              <ng-container matColumnDef="created">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Dated Created</th>
-                <td mat-cell *matCellDef="let row"> {{row.created}} </td>
+              <ng-container matColumnDef="deposit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Deposit</th>
+                <td mat-cell *matCellDef="let row">
+                  <a routerLinkActive="active" [routerLink]="['/savings-deposit', row.id]" mat-icon-button class="nav-link text-green">
+                    <mat-icon>local_atm</mat-icon>
+                  </a>
+                  </td>
+              </ng-container>
+
+              <!-- Created Column -->
+              <ng-container matColumnDef="withdraw">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Withdraw</th>
+                <td mat-cell *matCellDef="let row">
+                  <a routerLinkActive="active" [routerLink]="['/savings-withdrawal', row.id]" mat-icon-button class="nav-link text-red">
+                    <mat-icon>money_off</mat-icon>
+                  </a></td>
               </ng-container>
 
               <!-- Star Column -->
-              <ng-container matColumnDef="star" stickyEnd>
+              <ng-container matColumnDef="star" >
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>See Details</th>
                 <td mat-cell *matCellDef="let row">
-                  <a href="" routerLinkActive="active" [routerLink]="['/savings-account', row.id]" mat-icon-button class="nav-link">
+                  <a routerLinkActive="active" [routerLink]="['/savings-account', row.id]" mat-icon-button class="nav-link">
                     <mat-icon>open_in_new</mat-icon>
                   </a>
                 </td>

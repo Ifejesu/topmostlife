@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { AuthGuard } from './services/auth-guard.service';
-import { SavingsProfileComponent } from './pages/savings-profile/savings-profile.component';
 
 
 @NgModule({
@@ -31,8 +30,7 @@ import { SavingsProfileComponent } from './pages/savings-profile/savings-profile
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    SavingsProfileComponent
+    AuthLayoutComponent
   ],
   providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]

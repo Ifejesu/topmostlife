@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NewsavingsaccountComponent implements OnInit {
   savingsForm: FormGroup;
   currentDate: Date;
+  totalDebit: Number;
 
   constructor(private fb: FormBuilder, private api: ApiService, private datePipe: DatePipe, private auth: AuthService) { }
 
@@ -23,7 +24,7 @@ export class NewsavingsaccountComponent implements OnInit {
       amount: [null, Validators.required],
       balance: [0, Validators.required],
       paid_registration: ['No', Validators.required],
-      registration_fee: [null, Validators.required],
+      registration_fee: [0, Validators.required],
       officer_id: this.auth.userId,
       created: this.datePipe.transform(this.currentDate, 'short'),
       surname: [null, Validators.required],
@@ -57,6 +58,16 @@ export class NewsavingsaccountComponent implements OnInit {
       nok_state: [' ', Validators.required],
       nok_lga: [' ', Validators.required],
       nok_city: [' ', Validators.required]
+    });
+
+    this.savingsForm.controls['paid_registration'].valueChanges.subscribe(debitAmt => {
+      this.totalDebit = Number(debitAmt) + Number(this.savingsForm.controls['charges'].value);
+      if (Number(this.savingsForm.controls['balance'].value) > this.totalDebit) {
+        this.savingsForm.controls['balance'].setErrors({'incorrect': null});
+      } else {
+        this.savingsForm.controls['balance'].setErrors({'incorrect': true});
+      }
+      this.savingsForm.controls['balance'].updateValueAndValidity();
     });
   }
 

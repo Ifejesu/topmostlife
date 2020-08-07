@@ -11,13 +11,13 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-primary', class: '' },
   { path: '/savings-account', title: 'Savings Account', icon: 'ni-ungroup text-red', class: '' },
-  { path: '/savings-deposit', title: 'Savings Deposit', icon: 'ni-box-2 text-red', class: '' },
-  { path: '/savings-withdrawal', title: 'Savings Withdrawal', icon: 'ni-money-coins text-red', class: '' },
+  // { path: '/savings-deposit', title: 'Savings Deposit', icon: 'ni-box-2 text-red', class: '' },
+  // { path: '/savings-withdrawal', title: 'Savings Withdrawal', icon: 'ni-money-coins text-red', class: '' },
   { path: '/loan-account', title: 'Loan Account', icon: 'ni-collection text-yellow', class: '' },
-  { path: '/loan-payment', title: 'Loan Payment', icon: 'ni-credit-card text-yellow', class: '' },
+  // { path: '/loan-payment', title: 'Loan Payment', icon: 'ni-credit-card text-yellow', class: '' },
   { path: '/overdraft-account', title: 'Overdraft Account', icon: 'ni-single-copy-04 text-green', class: '' },
-  { path: '/overdraft-deposit', title: 'Overdraft Deposit', icon: 'ni-box-2 text-green', class: '' },
-  { path: '/overdraft-withdrawal', title: 'Overdraft Withdrawal', icon: 'ni-money-coins text-green', class: '' },
+  // { path: '/overdraft-deposit', title: 'Overdraft Deposit', icon: 'ni-box-2 text-green', class: '' },
+  // { path: '/overdraft-withdrawal', title: 'Overdraft Withdrawal', icon: 'ni-money-coins text-green', class: '' },
   // { path: '/users', title: 'Users',  icon:'ni-single-02 text-yellow', class: '' }
 ];
 
@@ -66,10 +66,15 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
-    this.user = this.auth.name;
-    if (this.auth.role$.value === 'admin') {
-      this.admin = true;
-    }
+    // this.user = this.auth.name;
+    // if (this.auth.role$.value === 'admin') {
+    //   this.admin = true;
+    // }
+
+    this.user = localStorage.getItem('name');
+     if (localStorage.getItem('role') === 'admin') {
+       this.admin = true;
+     }
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;

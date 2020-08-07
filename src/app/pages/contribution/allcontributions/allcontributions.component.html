@@ -17,7 +17,12 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header bg-transparent">
-          <h3 class="mb-0">Tables of All Contributions</h3>
+          <div class="col">
+            <h3 class="mb-0">Tables of All Contributions</h3>
+          </div>
+          <div class="col text-right">
+            <button type="button" class="btn btn-sm btn-success" (click)="exporter.exportTable('xlsx', {fileName:'Contributions', sheet: 'Sheet 1', Props: {Author: 'Admin'}})">Export as Excel</button>
+          </div>
         </div>
         <div class="card-body">
           <mat-form-field>
@@ -32,7 +37,7 @@
 
           <div class="table-responsive example-table-container">
             <table class="table align-items-center table-flush" mat-table [dataSource]="dataSource" matSort
-              matSortActive="date" matSortDisableClear matSortDirection="desc">
+              matSortActive="date" matTableExporter #exporter="matTableExporter" matSortDisableClear matSortDirection="desc">
               <!-- ID Column -->
               <ng-container matColumnDef="date" sticky>
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>

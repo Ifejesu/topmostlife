@@ -25,16 +25,20 @@ import { NewUserComponent } from 'src/app/pages/users/new-user/new-user.componen
 import { UsersListComponent } from 'src/app/pages/users/users-list/users-list.component';
 import { SavingsWithdrawComponent } from 'src/app/pages/savings-withdraw/savings-withdraw.component';
 import { OverdraftWithdrawComponent } from 'src/app/pages/overdraft-withdraw/overdraft-withdraw.component';
+import { SavingsProfileComponent } from 'src/app/pages/savings-profile/savings-profile.component';
+import { RevenueComponent } from 'src/app/pages/revenue/revenue.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
+    { path: 'revenue', component: RevenueComponent },
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'users', component: UsersListComponent },
     { path: 'new-user', component: NewUserComponent },
 
     { path: 'savings-account', component: AllsavingsaccountComponent },
-    { path: 'savings-account/:id', component: OnesavingsaccountComponent },
+    { path: 'savings-account/:id', component: SavingsProfileComponent },
     { path: 'new-savings-account', component: NewsavingsaccountComponent },
+    { path: 'update-savings-account/:id', component: OnesavingsaccountComponent },
     { path: 'contributions', component: AllcontributionsComponent },
     { path: 'savings-statement/:id', component: OnecontributionComponent },
     { path: 'savings-deposit/:id', component: NewcontributionComponent },

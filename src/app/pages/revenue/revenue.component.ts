@@ -5,12 +5,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-allsavingsaccount',
-  templateUrl: './allsavingsaccount.component.html',
-  styleUrls: ['./allsavingsaccount.component.scss']
+  selector: 'app-revenue',
+  templateUrl: './revenue.component.html',
+  styleUrls: ['./revenue.component.scss']
 })
-export class AllsavingsaccountComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'account_type', 'name', 'balance', 'deposit', 'withdraw', 'star'];
+export class RevenueComponent implements OnInit {
+  displayedColumns: string[] = ['date', 'amount', 'description'];
   dataSource: MatTableDataSource<any>;
   isLoadingResults = true;
   resultsLength = 0;
@@ -21,13 +21,13 @@ export class AllsavingsaccountComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.api.getAllAccounts().subscribe(res => {
+    this.api.getRevenues().subscribe(res => {
       if (res) {
         this.isLoadingResults = false;
         this.dataSource = new MatTableDataSource(res['data']);
         this.resultsLength = this.dataSource.data.length;
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
       } else {
         console.log('Error loading data!');
       }
@@ -43,4 +43,5 @@ export class AllsavingsaccountComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
 }

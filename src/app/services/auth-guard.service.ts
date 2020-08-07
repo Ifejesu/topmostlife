@@ -17,19 +17,24 @@ export class AuthGuard implements CanActivate, CanLoad {
     return true;
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return new Observable(
-      (observer) => {
-        this.auth.isAuth$.subscribe(
-          (auth) => {
-            if (!auth) {
-              this.router.navigate(['/login']);
-            }
-            observer.next(true);
-          }
-        );
-      }
-    );
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (!localStorage.getItem('isLoggedIn')) {
+      this.router.navigate(['/login']);
+    }
+    return true;
+
+    // return new Observable(
+    //   observer => {
+    //     this.auth.isAuth$.subscribe(
+    //       auth => {
+    //         if (!auth) {
+    //           this.router.navigate(['/login']);
+    //         }
+    //         observer.next(true);
+    //       }
+    //     );
+    //   }
+    // );
   }
 
 }
